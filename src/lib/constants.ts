@@ -162,12 +162,12 @@ export const PROJECT_ITEMS: ProjectItem[] = [
     link: "https://github.com/Vaibhav0710/Courier-management-system"
   },
   {
-    title: "Daily DSA Engine",
-    description: "A comprehensive library of optimized data structures and algorithms implemented in Java. Includes rigorous implementations of graphs, trees, and dynamic programming patterns to maintain high-performance algorithmic logic.",
-    tags: ["Java", "Algorithms", "DSA", "Logic Optimization"],
-    year: "2026",
-    category: "Algorithms / Foundation",
-    link: "https://github.com/Vaibhav0710/Daily_DSA"
+    title: "Pizza Shop Platform",
+    description: "An online e-commerce application designed for custom pizza ordering and restaurant management. Features interactive ingredient selection, real-time cart state updates, and an automated order processing pipeline.",
+    tags: ["ReactJS", "Spring Boot", "REST API", "MySQL", "Tailwind CSS"],
+    year: "2025",
+    category: "Full-Stack / E-Commerce",
+    link: "https://github.com/Vaibhav0710/Pizza-Shop"
   },
   {
     title: "Rent-A-Car Platform",
