@@ -56,8 +56,7 @@ export const ContactSection = () => {
       <div className="grid items-start gap-12 xl:grid-cols-[1.1fr_1fr] xl:gap-14">
         <div>
           <p className="max-w-[46ch] text-[1.125rem] leading-[1.75]">
-            I&apos;m looking for Java and Spring Boot backend roles in any city in India, remote, or with relocation. Send me a
-            message here, or reach me wherever suits you.
+            I&apos;m looking for Java and Spring Boot backend roles. Send me a message here, or reach me wherever suits you.
           </p>
 
           <div className="mt-8">
@@ -98,7 +97,14 @@ export const ContactSection = () => {
               </li>
             ))}
           </ul>
-          <p className="mt-4 font-sans text-sm text-muted">Based in {PERSON.location}.</p>
+          <dl className="mt-6 grid gap-x-6 gap-y-2 font-sans text-sm sm:grid-cols-[7rem_1fr]">
+            <dt className="text-muted">Notice period</dt>
+            <dd>{PERSON.noticePeriod}</dd>
+            <dt className="text-muted">Open to</dt>
+            <dd>{PERSON.openTo}</dd>
+            <dt className="text-muted">Based in</dt>
+            <dd>{PERSON.location}</dd>
+          </dl>
         </div>
 
         <ContactForm />

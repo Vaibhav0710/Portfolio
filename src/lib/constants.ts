@@ -72,6 +72,7 @@ export interface EducationItem {
 export interface Certification {
   name: string;
   issuer: string;
+  detail?: string;
   /** Public link to the certificate; leave out while the file is not publicly viewable */
   link?: string;
 }
@@ -94,6 +95,9 @@ export const PERSON = {
   photo: "/api/profile-photo",
   cv: "/Vaibhav_Jain_Java_Backend_Developer_CV.pdf",
   siteUrl: "https://vaibhavjain-portfolio.vercel.app",
+  // [qa_bank: notice_period, relocation]
+  noticePeriod: "30 days",
+  openTo: "Any city in India, remote, or relocating to the UAE, Europe, Japan, Canada or the USA",
 };
 
 export const NAV_LINKS: NavLink[] = [
@@ -315,8 +319,7 @@ export const EDUCATION: EducationItem[] = [
     degree: "Post Graduate Diploma in Advanced Computing (PG-DAC, CDAC)",
     institution: "Sunbeam Institute of Information Technology, Pune",
     period: "Sep 2024 – Feb 2025",
-    // [edu_1] Module names follow C-DAC's official PG-DAC syllabus (cdac.in, checked 2026-10-09).
-    // Algorithms and Data Structures using Java is pending Vaibhav's confirmation before it goes live.
+    // [edu_1] Module names follow C-DAC's official PG-DAC syllabus (cdac.in, checked 2026-10-09), confirmed by Vaibhav
     note: "C-DAC's full-time, 900-hour advanced computing programme, where Java became my core language. It ended with a 120-hour capstone project.",
     modules: [
       "Object-Oriented Programming with Java",
@@ -352,5 +355,11 @@ export const CERTIFICATIONS: Certification[] = [
     issuer: "GeeksforGeeks",
     // The Drive file is private (HTTP 401 on 2026-10-09). Share it as "Anyone with the link", then restore:
     // link: "https://drive.google.com/file/d/1gm-ZbaVoeAYDpNedGDUW_rH_zjdzWren/view?usp=drive_link",
+  },
+  {
+    // [ach_1]
+    name: "100 Days Badge 2024",
+    issuer: "LeetCode",
+    detail: "Solved problems on 100+ days in 2024.",
   },
 ];

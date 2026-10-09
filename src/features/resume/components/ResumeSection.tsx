@@ -115,12 +115,13 @@ export const EducationSection = () => {
         ))}
       </ul>
 
-      <h3 className="mt-12 border-b border-rule pb-2 font-sans text-base font-semibold">Certifications</h3>
+      <h3 className="mt-12 border-b border-rule pb-2 font-sans text-base font-semibold">Certifications and achievements</h3>
       <ul className="mt-2 divide-y divide-rule">
         {CERTIFICATIONS.map((cert) => (
           <li key={cert.name} className="flex flex-col gap-1 py-3 sm:flex-row sm:items-baseline sm:justify-between">
             <span>
               {cert.name}, <span className="text-muted">{cert.issuer}</span>
+              {cert.detail && <span className="block font-sans text-sm text-muted">{cert.detail}</span>}
             </span>
             {cert.link && (
               <a href={cert.link} target="_blank" rel="noreferrer" className="link font-sans text-sm">
