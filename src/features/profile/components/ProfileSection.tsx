@@ -17,7 +17,7 @@ const lineDelay = (i: number) => ({ "--line": i }) as CSSProperties;
 
 export const ProfileSection = () => {
   return (
-    <section id="top" className="px-4 pb-16 pt-10 sm:px-8 md:pb-24 md:pt-16">
+    <section id="top" className="px-5 pb-14 pt-8 sm:px-8 md:pb-20 md:pt-14">
       <div className="mx-auto max-w-4xl">
         <h1 className="sr-only">
           {PERSON.name}, Java backend developer. {CHART_LINES.slice(3).map((l) => l.text).join(". ")}.

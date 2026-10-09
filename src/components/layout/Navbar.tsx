@@ -8,7 +8,7 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-paper/90 backdrop-blur-sm">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 font-sans sm:px-8" aria-label="Main">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 font-sans sm:px-8" aria-label="Main">
         <a href="#top" className="text-[0.95rem] font-semibold tracking-tight [font-stretch:115%]">
           {PERSON.name}
         </a>
@@ -50,7 +50,7 @@ export const Navbar = () => {
       </nav>
 
       {isOpen && (
-        <ul id="mobile-menu" className="border-t border-rule px-4 pb-4 font-sans md:hidden">
+        <ul id="mobile-menu" className="border-t border-rule px-5 pb-4 font-sans md:hidden">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a

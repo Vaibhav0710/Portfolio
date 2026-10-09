@@ -6,7 +6,7 @@ import { PERSON } from "@/lib/constants";
 type Status = "idle" | "sending" | "sent" | "error";
 
 const inputClass =
-  "w-full rounded-sm border border-rule bg-plate px-3.5 py-2.5 font-sans text-[0.95rem] text-ink placeholder:text-muted/70 transition-colors focus:border-ink focus:outline-none";
+  "w-full rounded-sm border border-muted/45 bg-paper px-3.5 py-2.5 font-sans text-[0.95rem] text-ink placeholder:text-muted/70 transition-colors hover:border-muted focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/15";
 
 // Messages go through Web3Forms (https://web3forms.com). Its access key is designed to be public;
 // it decides which inbox receives the messages.
@@ -59,7 +59,13 @@ export const ContactForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-md bg-plate p-6 ring-1 ring-rule sm:p-8">
+    <form onSubmit={handleSubmit} aria-labelledby="contact-form-title" className="space-y-5 rounded-md bg-plate p-6 shadow-[0_24px_50px_-30px_rgb(20_34_58/0.35)] ring-1 ring-rule sm:p-8">
+      <div>
+        <h3 id="contact-form-title" className="font-sans text-xl font-semibold [font-stretch:112%]">
+          Send me a message
+        </h3>
+        <p className="mt-1 font-sans text-sm text-muted">I&apos;ll reply to the email address you enter.</p>
+      </div>
       <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
       <div className="grid gap-5 sm:grid-cols-2">

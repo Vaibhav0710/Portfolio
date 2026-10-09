@@ -62,6 +62,7 @@ export const VotingDiagram = () => {
           <Box x={500} y={162} w={128} h={42} title="Kafka" note="vote events" />
         </svg>
       </div>
+      <p className="mt-2 font-sans text-xs text-muted sm:hidden">Swipe sideways to see the whole diagram.</p>
       <figcaption className="mt-3 font-sans text-sm text-muted">
         How a vote travels (in red). User, candidate and voting services each have their own PostgreSQL database; the result service is stateless.
       </figcaption>

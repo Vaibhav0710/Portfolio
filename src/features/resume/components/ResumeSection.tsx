@@ -19,7 +19,7 @@ export const WorkSection = () => {
         </p>
 
         {/* The two roles form a sequence, so a timeline rule links them */}
-        <ol className="mt-10 space-y-12 border-l border-rule">
+        <ol className="mt-8 space-y-10 border-l border-rule">
           {company.roles.map((role) => (
             <li key={role.title} className="relative pl-6 sm:pl-8">
               <span aria-hidden="true" className="absolute -left-[5px] top-2.5 h-[9px] w-[9px] rounded-full border-2 border-accent bg-plate" />
@@ -102,7 +102,7 @@ export const EducationSection = () => {
         ))}
       </ul>
 
-      <h3 className="mt-14 border-b border-rule pb-2 font-sans text-base font-semibold">Certifications</h3>
+      <h3 className="mt-12 border-b border-rule pb-2 font-sans text-base font-semibold">Certifications</h3>
       <ul className="mt-2 divide-y divide-rule">
         {CERTIFICATIONS.map((cert) => (
           <li key={cert.name} className="flex flex-col gap-1 py-3 sm:flex-row sm:items-baseline sm:justify-between">

@@ -60,7 +60,7 @@ export const ContactSection = () => {
             message here, or reach me wherever suits you.
           </p>
 
-          <div className="mt-8 rounded-md bg-plate p-5 ring-1 ring-rule">
+          <div className="mt-8">
             <p className="flex items-center gap-2 font-sans text-sm text-muted">
               <Icon>
                 <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -72,7 +72,7 @@ export const ContactSection = () => {
               {PERSON.email}
             </p>
             <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3 font-sans text-sm">
-              <a href={`mailto:${PERSON.email}`} className="rounded-sm bg-ink px-4 py-2 font-medium text-paper transition-opacity hover:opacity-90">
+              <a href={`mailto:${PERSON.email}`} className="rounded-sm border border-ink px-4 py-2 font-medium transition-colors hover:bg-ink hover:text-paper">
                 Send email
               </a>
               <a href={GMAIL_COMPOSE} target="_blank" rel="noreferrer" className="link">

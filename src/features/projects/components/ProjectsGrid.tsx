@@ -54,7 +54,7 @@ export const ProjectsGrid = () => {
 
       {/* Other main projects */}
       {PROJECTS.map((project) => (
-        <article key={project.title} className="mt-16 border-t border-rule pt-12">
+        <article key={project.title} className="mt-12 border-t border-rule pt-10">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
             <h3 className="font-sans text-xl font-semibold [font-stretch:112%]">{project.title}</h3>
             <p className="shrink-0 font-sans text-sm tabular-nums text-muted">{project.period}</p>
@@ -68,7 +68,7 @@ export const ProjectsGrid = () => {
       ))}
 
       {/* Smaller projects */}
-      <div className="mt-16 border-t border-rule pt-12">
+      <div className="mt-12 border-t border-rule pt-10">
         <h3 className="font-sans text-base font-semibold">Smaller projects from training</h3>
         <ul className="mt-4 divide-y divide-rule">
           {MINOR_PROJECTS.map((project) => (
