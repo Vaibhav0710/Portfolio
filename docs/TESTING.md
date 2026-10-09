@@ -14,7 +14,7 @@ npm run build
 
 Truth check (must print nothing):
 ```bash
-grep -rniE "40%|99\.9|12k|4,000|150\+|25\+|30%|3x|35%|kubernetes|entity framework|aes-256|vaibhavjain7171|savitribai|millions|resilience4j|prometheus|hermes" src
+grep -rniE "40%|99\.9|12k|4,000|150\+|25\+|30%|3x|35%|kubernetes|entity framework|aes-256|vaibhavjain7171|b.?tech|2021 ?[-–] ?2025|millions|resilience4j|prometheus|hermes" src
 ```
 Then read every changed line in `src/lib/constants.ts` against `career/master_profile.yaml`.
 

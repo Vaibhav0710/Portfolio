@@ -26,7 +26,7 @@ the core requirement.
 3. Work: IntelligentDX once, two roles (intern Apr–Oct 2025, Junior Software Developer Nov 2025–present).
 4. Projects: voting system first (with architecture diagram and per-service repo links), Courier, smaller projects.
 5. Skills: backend only, each marked "used at work" or "projects and training".
-6. Education (PG-DAC with modules, B.Tech/B.E. pending confirmation) and certifications/achievements.
+6. Education (PG-DAC with modules; B.E. Mechanical, MESCOE/SPPU, 2019–2023) and certifications/achievements.
 7. Connect: message form, Send email / Open in Gmail, LinkedIn, GitHub, CV, notice period, open-to locations.
 8. CV PDF served from the site.
 
@@ -46,5 +46,4 @@ the core requirement.
 - Next: per-application tracked links (`?r=code`), SEO, analytics (Job/PLAN.md section 9).
 
 ## Open questions
-- Degree title: B.Tech (master profile) or B.E. (SPPU result sheet)?
 - Which inbox the Web3Forms key delivers to.

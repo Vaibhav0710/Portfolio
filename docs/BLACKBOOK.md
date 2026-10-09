@@ -44,7 +44,9 @@ screenshots going stale (solved with headless Chrome captures).
 - Recorded confirmed facts in the master profile: PG-DAC modules incl. Algorithms and Data Structures using Java;
   Apna College certificate title "Alpha (DSA with Java)"; LeetCode 100 Days Badge 2024 (achievement `ach_1`).
 - Added recruiter availability (notice period 30 days, open-to locations) to Connect.
-- Open: degree title. The SPPU result sheet says "B.E. (2019 PAT.)(MECHANICAL)"; the master profile says B.Tech.
+- Decision: degree title is **B.E.** (Vaibhav confirmed against the SPPU result sheet "B.E. (2019 PAT.)(MECHANICAL)").
+  Corrected B.Tech to B.E. in the master profile, CV (recompiled, still one page), profile packs, brief, PLAN.md,
+  the shared career notes and this site. LinkedIn and Naukri must be corrected by hand.
 - Added the 10 project docs.
 
 ### 2026-10-09

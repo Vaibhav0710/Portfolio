@@ -331,8 +331,9 @@ export const EDUCATION: EducationItem[] = [
     ],
   },
   {
-    degree: "Bachelor of Technology (B.Tech), Mechanical Engineering",
-    institution: "Modern Education Society's College of Engineering, Pune",
+    // [edu_2] degree title confirmed 2026-10-10 against the SPPU result sheet
+    degree: "Bachelor of Engineering (B.E.), Mechanical Engineering",
+    institution: "Modern Education Society's College of Engineering, Pune (Savitribai Phule Pune University)",
     period: "2019 – 2023",
     note: "CGPA 7.48",
   },
