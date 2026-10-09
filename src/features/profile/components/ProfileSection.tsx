@@ -1,150 +1,77 @@
-"use client";
+import type { CSSProperties } from "react";
+import { CHART_LINES, CHART_LAST_LINE, PERSON } from "@/lib/constants";
 
-import React, { useEffect, useRef } from 'react';
-import { gsap } from '@/lib/gsap';
-import { EXTERNAL_LINKS } from '@/lib/constants';
+// Type size, width and letter spacing for each chart line, largest first (index matches CHART_LINES)
+// Sizes are in container units (cqi) of the line's own column, so every line fits the plate at any screen width.
+// The lower lines have a readable minimum and may wrap on small phones.
+const LINE_STYLES = [
+  "text-[15cqi] [font-stretch:125%] tracking-[0.06em]",
+  "text-[10.5cqi] [font-stretch:125%] tracking-[0.08em]",
+  "text-[5.2cqi] [font-stretch:118%] tracking-[0.08em]",
+  "text-[max(0.72rem,3.2cqi)] [font-stretch:112%] tracking-[0.09em]",
+  "text-[max(0.66rem,2.45cqi)] [font-stretch:105%] tracking-[0.1em]",
+  "text-[max(0.6rem,1.95cqi)] [font-stretch:100%] tracking-[0.11em]",
+];
+
+const lineDelay = (i: number) => ({ "--line": i }) as CSSProperties;
 
 export const ProfileSection = () => {
-  const profileRef = useRef<HTMLDivElement>(null);
-  const terminalRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".profile-title", {
-        y: 100,
-        skewY: 7,
-        opacity: 0,
-        duration: 1.5,
-        ease: "power4.out"
-      });
-
-      gsap.from(".profile-subtitle", {
-        y: 30,
-        opacity: 0,
-        duration: 1.2,
-        delay: 0.3,
-        ease: "power3.out"
-      });
-
-      gsap.from(".profile-cta", {
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        delay: 0.6,
-        ease: "power2.out"
-      });
-
-      gsap.from(terminalRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 1.5,
-        delay: 0.8,
-        ease: "power4.out"
-      });
-      gsap.to(".grid-pattern", {
-        scrollTrigger: {
-          trigger: profileRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-        y: 100,
-      });
-    }, profileRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={profileRef} id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-24 overflow-hidden px-margin-mobile md:px-gutter">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-30 z-0"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background z-0"></div>
-      
-      <div className="relative z-10 w-full max-w-4xl flex flex-col items-center text-center profile-content">
-        <div className="flex flex-col items-center mb-10">
-          <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-primary/20 p-1 mb-6 group">
-            <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/40 transition-all duration-700"></div>
-            <div className="relative w-full h-full rounded-full overflow-hidden border border-white/10 z-10 shadow-2xl">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src={EXTERNAL_LINKS.PROFILE_PHOTO} 
-                alt="Vaibhav" 
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" 
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-outline-variant">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant">📍 Based in Pune, India</span>
-          </div>
-        </div>
-        
-        <h1 className="profile-title font-display text-4xl md:text-7xl font-bold text-on-surface mb-6 tracking-tight">
-          Building the <span className="text-primary italic">backbone</span> of modern applications.
+    <section id="top" className="px-4 pb-16 pt-10 sm:px-8 md:pb-24 md:pt-16">
+      <div className="mx-auto max-w-4xl">
+        <h1 className="sr-only">
+          {PERSON.name}, Java backend developer. {CHART_LINES.slice(3).map((l) => l.text).join(". ")}.
         </h1>
-        
-        <p className="profile-subtitle font-sans text-lg md:text-xl text-on-surface-variant max-w-2xl mb-12 leading-relaxed flex items-center justify-center gap-3">
-          Vaibhav Jain — Backend Engineer specializing in high-throughput APIs and scalable architectures.
-        </p>
-        
-        <div className="profile-cta flex flex-col sm:flex-row gap-4 items-center justify-center w-full mb-20">
-          <a 
-            href="#projects"
-            className="w-full sm:w-auto px-8 py-4 bg-surface-container-low text-primary border border-primary rounded-sm font-mono text-xs font-bold hover:shadow-[0_0_20px_rgba(87,241,219,0.3)] transition-all uppercase tracking-widest text-center"
-          >
-            View Projects
-          </a>
-          <a 
-            href={EXTERNAL_LINKS.RESUME_VIEW} 
-            target="_blank"
-            rel="noreferrer"
-            className="w-full sm:w-auto px-8 py-4 bg-transparent text-secondary border border-outline-variant rounded-sm font-mono text-xs font-bold hover:border-secondary transition-all uppercase tracking-widest text-center"
-          >
-            View Resume
-          </a>
+
+        {/* The chart plate */}
+        <div className="rounded-md bg-plate px-3 py-9 shadow-[0_1px_2px_rgb(20_34_58/0.06),0_28px_60px_-28px_rgb(20_34_58/0.28)] ring-1 ring-rule sm:px-10 sm:py-14">
+          <div aria-hidden="true" className="space-y-[0.9em] sm:space-y-6">
+            {CHART_LINES.map((line, i) => (
+              <div key={line.acuity} className="grid grid-cols-[1.25rem_1fr_2.5rem] items-center gap-1 sm:grid-cols-[2rem_1fr_3.25rem] sm:gap-3">
+                <span className="font-sans text-[0.65rem] tabular-nums text-muted sm:text-xs">{i + 1}</span>
+                <div className="@container min-w-0">
+                  <p className={`chart-line text-center text-balance ${LINE_STYLES[i]}`} style={lineDelay(i)}>
+                    {line.text}
+                  </p>
+                </div>
+                <span className="text-right font-sans text-[0.65rem] tabular-nums text-muted sm:text-xs">{line.acuity}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* The red line printed under the driving-standard row on real charts */}
+          <div aria-hidden="true" className="mx-auto my-6 h-[2px] w-2/3 bg-accent sm:my-8" />
+
+          <div className="grid grid-cols-[1.25rem_1fr_2.5rem] items-center gap-1 sm:grid-cols-[2rem_1fr_3.25rem] sm:gap-3">
+            <span aria-hidden="true" className="font-sans text-[0.65rem] tabular-nums text-muted sm:text-xs">
+              {CHART_LINES.length + 1}
+            </span>
+            <p className="chart-line text-center text-balance text-[0.6rem] tracking-[0.14em] sm:text-[0.7rem]" style={lineDelay(CHART_LINES.length + 1)}>
+              <a href="#contact" className="link">
+                {CHART_LAST_LINE.text}
+              </a>
+            </p>
+            <span aria-hidden="true" className="text-right font-sans text-[0.65rem] tabular-nums text-muted sm:text-xs">
+              {CHART_LAST_LINE.acuity}
+            </span>
+          </div>
         </div>
 
-        {/* Terminal Mockup */}
-        <div 
-          ref={terminalRef}
-          className="w-full bg-surface-container-lowest border border-[#262626] rounded-xl overflow-hidden text-left relative shadow-2xl"
-        >
-          <div className="bg-surface-container-low border-b border-[#262626] px-4 py-3 flex items-center gap-2">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-            </div>
-            <span className="ml-4 font-mono text-[11px] text-on-surface-variant opacity-60">bash — vaibhav@architect: ~</span>
-          </div>
-          <div className="p-6 font-mono text-sm text-on-surface-variant leading-relaxed min-h-[160px]">
-            <div className="flex gap-3">
-              <span className="text-primary">user@vaibhav:~$</span>
-              <span className="text-on-surface">./optimize_system.sh</span>
-            </div>
-            <div className="mt-2 text-secondary opacity-80">[INFO] Scanning 12k+ monthly API transactions...</div>
-            <div className="text-secondary opacity-80">[INFO] Syncing Redis distributed cache (latency -40%)</div>
-            <div className="text-secondary opacity-80">[INFO] Orchestrating Kafka event-driven backbone...</div>
-            <div className="mt-2 text-primary font-bold">[SUCCESS] Production infrastructure optimized for scale.</div>
-            <div className="flex gap-3 mt-4">
-              <span className="text-primary">user@vaibhav:~$</span>
-              <span className="w-2 h-5 bg-primary animate-blink"></span>
-            </div>
-          </div>
+        <div className="mt-8 flex flex-col items-center gap-3 font-sans sm:flex-row sm:justify-center sm:gap-4">
+          <a
+            href={`mailto:${PERSON.email}`}
+            className="w-full rounded-sm bg-ink px-6 py-3 text-center text-sm font-medium text-paper transition-opacity hover:opacity-90 sm:w-auto"
+          >
+            Email me
+          </a>
+          <a
+            href={PERSON.cv}
+            className="w-full rounded-sm border border-ink px-6 py-3 text-center text-sm font-medium transition-colors hover:bg-ink hover:text-paper sm:w-auto"
+          >
+            Download CV (PDF)
+          </a>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-        .animate-blink {
-          animation: blink 1s step-end infinite;
-        }
-      `}</style>
     </section>
   );
 };
