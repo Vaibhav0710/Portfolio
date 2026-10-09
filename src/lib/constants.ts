@@ -66,12 +66,14 @@ export interface EducationItem {
   institution: string;
   period: string;
   note?: string;
+  modules?: string[];
 }
 
 export interface Certification {
   name: string;
   issuer: string;
-  link: string;
+  /** Public link to the certificate; leave out while the file is not publicly viewable */
+  link?: string;
 }
 
 // ==========================================
@@ -313,7 +315,17 @@ export const EDUCATION: EducationItem[] = [
     degree: "Post Graduate Diploma in Advanced Computing (PG-DAC, CDAC)",
     institution: "Sunbeam Institute of Information Technology, Pune",
     period: "Sep 2024 – Feb 2025",
-    note: "900-hour programme: Core Java and J2EE, .NET (C#), Linux/Unix, RDBMS and software development methodologies, with a 120-hour capstone project.",
+    // [edu_1] Module names follow C-DAC's official PG-DAC syllabus (cdac.in, checked 2026-10-09).
+    // Algorithms and Data Structures using Java is pending Vaibhav's confirmation before it goes live.
+    note: "C-DAC's full-time, 900-hour advanced computing programme, where Java became my core language. It ended with a 120-hour capstone project.",
+    modules: [
+      "Object-Oriented Programming with Java",
+      "Algorithms and Data Structures using Java",
+      "Web-based Java Programming (J2EE)",
+      "Database Technologies (RDBMS)",
+      "Operating Systems (Linux/Unix) and Software Development Methodologies",
+      "Microsoft .NET Technologies (C#)",
+    ],
   },
   {
     degree: "Bachelor of Technology (B.Tech), Mechanical Engineering",
@@ -330,13 +342,15 @@ export const CERTIFICATIONS: Certification[] = [
     link: "https://drive.google.com/file/d/1wzmtmsWBLMzwFw_TAUU_146hK4m3yOVL/view?usp=sharing",
   },
   {
-    name: "DSA Course, Alpha batch",
+    // Course name as printed on the certificate (career/certificates/certificate-alpha-batch-20-*.pdf)
+    name: "Alpha: DSA with Java",
     issuer: "Apna College",
     link: "https://drive.google.com/file/d/16F2l1VdV4U1mn0OftWz9VgqM8YpyMFwY/view?usp=sharing",
   },
   {
     name: "Google Cloud Bootcamp",
     issuer: "GeeksforGeeks",
-    link: "https://drive.google.com/file/d/1gm-ZbaVoeAYDpNedGDUW_rH_zjdzWren/view?usp=drive_link",
+    // The Drive file is private (HTTP 401 on 2026-10-09). Share it as "Anyone with the link", then restore:
+    // link: "https://drive.google.com/file/d/1gm-ZbaVoeAYDpNedGDUW_rH_zjdzWren/view?usp=drive_link",
   },
 ];

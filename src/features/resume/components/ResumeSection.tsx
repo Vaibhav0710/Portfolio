@@ -98,6 +98,19 @@ export const EducationSection = () => {
             </div>
             <p className="text-muted">{item.institution}</p>
             {item.note && <p className="mt-2 max-w-[68ch]">{item.note}</p>}
+            {item.modules && (
+              <>
+                <p className="mt-4 font-sans text-sm font-medium">Modules</p>
+                <ul className="mt-2 grid max-w-[68ch] gap-x-8 gap-y-1.5 font-sans text-[0.95rem] sm:grid-cols-2">
+                  {item.modules.map((module) => (
+                    <li key={module} className="flex gap-2.5">
+                      <span aria-hidden="true" className="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-muted" />
+                      {module}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </li>
         ))}
       </ul>
@@ -109,9 +122,11 @@ export const EducationSection = () => {
             <span>
               {cert.name}, <span className="text-muted">{cert.issuer}</span>
             </span>
-            <a href={cert.link} target="_blank" rel="noreferrer" className="link font-sans text-sm">
-              View certificate
-            </a>
+            {cert.link && (
+              <a href={cert.link} target="_blank" rel="noreferrer" className="link font-sans text-sm">
+                View certificate
+              </a>
+            )}
           </li>
         ))}
       </ul>
