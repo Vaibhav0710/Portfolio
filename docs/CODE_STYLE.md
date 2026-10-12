@@ -13,17 +13,20 @@
 
 ## Content
 - All visible text goes in `src/lib/constants.ts` with a `// [id]` comment pointing to `master_profile.yaml`.
-- Sentence case for headings and buttons; plain verbs ("Send message", "Download CV (PDF)").
+- Sentence case for headings and buttons; plain verbs ("Send message", "Download CV"); one label per intent across the page.
 
 ## Tailwind CSS v4
 - Use the tokens (`bg-paper`, `text-ink`, `text-muted`, `border-rule`, `text-accent`, `bg-plate`, `bg-tint`);
   no raw hex colours in components.
+- Buttons and button-like links get `pressable` and `min-h-11`.
 - `font-sans` (Archivo) for UI, default serif for body. Utility classes inline; shared shells go in components,
   not in custom CSS. Global CSS only for tokens, base styles, `.link` and the chart animation.
 
 ## Dependencies
-Keep runtime deps to Next, React and React DOM. Ask before adding any.
+Runtime deps: Next, React, React DOM and `@phosphor-icons/react` (icons). Ask before adding any other.
+In server components import icons from `@phosphor-icons/react/dist/ssr`; in client components from `@phosphor-icons/react`.
+Icons are decorative next to text: pass `aria-hidden`.
 
 ## Commits
-Imperative subject (≤ 72 chars), blank line, short body with the why. End with the attribution line the session
-asks for. Work on a branch; never push without Vaibhav's OK.
+Imperative subject (≤ 72 chars), blank line, short body with the why. Work on a branch; merge to `main`
+only after review, since `main` deploys to production.

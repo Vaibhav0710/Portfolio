@@ -21,6 +21,7 @@ Browser ──► api.web3forms.com            contact form submit (client-side,
 | `features/about`, `features/resume`, `features/projects` | Server components rendering constants |
 | `features/projects/VotingDiagram.tsx` | Inline SVG of the voting system's services |
 | `features/contact` | Connect section; `ContactForm` is the only client form; `Navbar` is the only other client component |
+| `src/app/not-found.tsx` | Eye-chart 404 page |
 | `app/api/profile-photo/route.ts` | Fetches the Drive photo with `revalidate: 86400`, sends public cache headers |
 
 ## Data flow
@@ -28,7 +29,7 @@ Browser ──► api.web3forms.com            contact form submit (client-side,
 - Contact: form → `fetch` to Web3Forms with `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` → email to the key's inbox.
 
 ## Stack
-Next.js 16.2.6 (Turbopack), React 19.2.4, TypeScript 5, Tailwind CSS 4, ESLint 9. No runtime UI libraries.
+Next.js 16.2.6 (Turbopack), React 19.2.4, TypeScript 5, Tailwind CSS 4, ESLint 9, `@phosphor-icons/react` 2.1.10 (icons).
 
 ## Key decisions
 - **One content file** so text changes never touch layout (and a future agent can edit only data).

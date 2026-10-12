@@ -40,6 +40,20 @@ screenshots going stale (solved with headless Chrome captures).
 
 ## Part 2: log (newest first)
 
+### 2026-10-12
+- Design audit (accessibility, performance, theming, responsive, motion, composition): 16/20 technical, 6/10 craft.
+  Fixed every finding:
+  - Input borders 1.9:1 to 5.5:1 and placeholder 3.0:1 to 5.5:1 (WCAG 1.4.11 / readability).
+  - Hero animation 900 ms + 140 ms stagger + 10px blur to 560 ms + 60 ms + 4px; reduced motion now fades instead of nothing.
+  - All controls at least 44 px tall: menu button, CV button, link lists, certificate links, footer.
+  - Press feedback (`.pressable`), `--ease-out` token as the Tailwind default easing, shadow tokens.
+  - One label per intent (Email me, Download CV); Phosphor icons replace hand-drawn ones; error callout without the side stripe.
+  - Layout variety: stacked Projects (full-width diagram + side column), Skills as a full-width band, stacked Connect.
+  - Eye-chart 404 page.
+- Kept by decision: serif body text, en-dash date ranges, native scrolling (no Lenis), photo in About not the hero.
+- Verified: lint, types, build, screenshots desktop light/dark, 375 px, 404. Not verified: Lighthouse,
+  screen reader, real devices.
+
 ### 2026-10-10
 - Recorded confirmed facts in the master profile: PG-DAC modules incl. Algorithms and Data Structures using Java;
   Apna College certificate title "Alpha (DSA with Java)"; LeetCode 100 Days Badge 2024 (achievement `ach_1`).

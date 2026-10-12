@@ -18,10 +18,10 @@ const Box = ({ x, y, w, h, title, note }: { x: number; y: number; w: number; h: 
 export const VotingDiagram = () => {
   return (
     <figure className="mt-8">
-      <div className="overflow-x-auto rounded-md bg-plate p-4 ring-1 ring-rule">
+      <div className="overflow-x-auto rounded-md bg-plate p-4 ring-1 ring-rule sm:p-6">
         <svg
           viewBox="0 0 640 262"
-          className="h-auto w-full min-w-[580px] font-sans"
+          className="mx-auto h-auto w-full min-w-[580px] max-w-[880px] font-sans"
           role="img"
           aria-label="Clients call the API gateway, which uses Eureka for discovery and routes to the user, candidate, voting and result services. The voting service checks Redis and publishes vote events to Kafka, which the result service consumes."
         >

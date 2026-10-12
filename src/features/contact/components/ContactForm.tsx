@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { WarningCircle } from "@phosphor-icons/react";
 import { PERSON } from "@/lib/constants";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
 const inputClass =
-  "w-full rounded-sm border border-muted/45 bg-paper px-3.5 py-2.5 font-sans text-[0.95rem] text-ink placeholder:text-muted/70 transition-colors hover:border-muted focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/15";
+  "w-full rounded-sm border border-muted bg-paper px-3.5 py-2.5 font-sans text-[0.95rem] text-ink placeholder:text-muted transition-colors hover:border-ink focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/15";
 
 // Messages go through Web3Forms (https://web3forms.com). Its access key is designed to be public;
 // it decides which inbox receives the messages.
@@ -48,10 +49,10 @@ export const ContactForm = () => {
 
   if (status === "sent") {
     return (
-      <div className="rounded-md bg-plate p-6 ring-1 ring-rule sm:p-8" role="status">
+      <div className="rounded-md bg-plate p-6 shadow-card ring-1 ring-rule sm:p-8" role="status">
         <p className="font-sans text-lg font-semibold">Message sent</p>
         <p className="mt-2 text-muted">Thanks for writing. I&apos;ll reply to the email address you gave.</p>
-        <button type="button" onClick={() => setStatus("idle")} className="link mt-5 font-sans text-sm">
+        <button type="button" onClick={() => setStatus("idle")} className="link mt-4 inline-flex min-h-11 items-center font-sans text-sm">
           Send another message
         </button>
       </div>
@@ -59,7 +60,7 @@ export const ContactForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} aria-labelledby="contact-form-title" className="space-y-5 rounded-md bg-plate p-6 shadow-[0_24px_50px_-30px_rgb(20_34_58/0.35)] ring-1 ring-rule sm:p-8">
+    <form onSubmit={handleSubmit} aria-labelledby="contact-form-title" className="space-y-5 rounded-md bg-plate p-6 shadow-card ring-1 ring-rule sm:p-8">
       <div>
         <h3 id="contact-form-title" className="font-sans text-xl font-semibold [font-stretch:112%]">
           Send me a message
@@ -98,19 +99,22 @@ export const ContactForm = () => {
       </div>
 
       {status === "error" && (
-        <p role="alert" className="rounded-sm border-l-2 border-accent bg-tint px-3.5 py-2.5 font-sans text-sm">
-          The message couldn&apos;t be sent. Please try again, or email me at{" "}
-          <a href={`mailto:${PERSON.email}`} className="link">
-            {PERSON.email}
-          </a>
-          .
+        <p role="alert" className="flex gap-2.5 rounded-sm bg-tint px-3.5 py-3 font-sans text-sm">
+          <WarningCircle aria-hidden="true" size={20} weight="fill" className="shrink-0 text-accent" />
+          <span>
+            The message couldn&apos;t be sent. Please try again, or email me at{" "}
+            <a href={`mailto:${PERSON.email}`} className="link">
+              {PERSON.email}
+            </a>
+            .
+          </span>
         </p>
       )}
 
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full rounded-sm bg-ink px-6 py-3 font-sans text-sm font-medium text-paper transition-opacity hover:opacity-90 disabled:cursor-wait disabled:opacity-60 sm:w-auto"
+        className="pressable min-h-11 w-full rounded-sm bg-ink px-6 font-sans text-sm font-medium text-paper hover:opacity-90 disabled:cursor-wait disabled:opacity-60 sm:w-auto"
       >
         {status === "sending" ? "Sending…" : "Send message"}
       </button>

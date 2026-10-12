@@ -10,7 +10,7 @@ const LINE_STYLES = [
   "text-[5.2cqi] [font-stretch:118%] tracking-[0.08em]",
   "text-[max(0.72rem,3.2cqi)] [font-stretch:112%] tracking-[0.09em]",
   "text-[max(0.66rem,2.45cqi)] [font-stretch:105%] tracking-[0.1em]",
-  "text-[max(0.6rem,1.95cqi)] [font-stretch:100%] tracking-[0.11em]",
+  "text-[max(0.62rem,1.95cqi)] [font-stretch:100%] tracking-[0.11em]",
 ];
 
 const lineDelay = (i: number) => ({ "--line": i }) as CSSProperties;
@@ -24,7 +24,7 @@ export const ProfileSection = () => {
         </h1>
 
         {/* The chart plate */}
-        <div className="rounded-md bg-plate px-3 py-9 shadow-[0_1px_2px_rgb(20_34_58/0.06),0_28px_60px_-28px_rgb(20_34_58/0.28)] ring-1 ring-rule sm:px-10 sm:py-14">
+        <div className="rounded-md bg-plate px-3 py-9 shadow-plate ring-1 ring-rule sm:px-10 sm:py-14">
           <div aria-hidden="true" className="space-y-[0.9em] sm:space-y-6">
             {CHART_LINES.map((line, i) => (
               <div key={line.acuity} className="grid grid-cols-[1.25rem_1fr_2.5rem] items-center gap-1 sm:grid-cols-[2rem_1fr_3.25rem] sm:gap-3">
@@ -46,8 +46,9 @@ export const ProfileSection = () => {
             <span aria-hidden="true" className="font-sans text-[0.65rem] tabular-nums text-muted sm:text-xs">
               {CHART_LINES.length + 1}
             </span>
-            <p className="chart-line text-center text-balance text-[0.6rem] tracking-[0.14em] sm:text-[0.7rem]" style={lineDelay(CHART_LINES.length + 1)}>
-              <a href="#contact" className="link">
+            <p className="chart-line text-center text-balance text-[0.66rem] tracking-[0.14em] sm:text-[0.72rem]" style={lineDelay(CHART_LINES.length + 1)}>
+              {/* The 6/6 line stays small on purpose; padding gives it a full-size tap target */}
+              <a href="#contact" className="link inline-flex min-h-11 items-center px-2">
                 {CHART_LAST_LINE.text}
               </a>
             </p>
@@ -60,15 +61,15 @@ export const ProfileSection = () => {
         <div className="mt-8 flex flex-col items-center gap-3 font-sans sm:flex-row sm:justify-center sm:gap-4">
           <a
             href={`mailto:${PERSON.email}`}
-            className="w-full rounded-sm bg-ink px-6 py-3 text-center text-sm font-medium text-paper transition-opacity hover:opacity-90 sm:w-auto"
+            className="pressable inline-flex min-h-11 w-full items-center justify-center rounded-sm bg-ink px-6 text-sm font-medium text-paper hover:opacity-90 sm:w-auto"
           >
             Email me
           </a>
           <a
             href={PERSON.cv}
-            className="w-full rounded-sm border border-ink px-6 py-3 text-center text-sm font-medium transition-colors hover:bg-ink hover:text-paper sm:w-auto"
+            className="pressable inline-flex min-h-11 w-full items-center justify-center rounded-sm border border-ink px-6 text-sm font-medium hover:bg-ink hover:text-paper sm:w-auto"
           >
-            Download CV (PDF)
+            Download CV
           </a>
         </div>
       </div>

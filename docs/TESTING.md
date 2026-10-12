@@ -18,12 +18,16 @@ grep -rniE "40%|99\.9|12k|4,000|150\+|25\+|30%|3x|35%|kubernetes|entity framewor
 ```
 Then read every changed line in `src/lib/constants.ts` against `career/master_profile.yaml`.
 
+
 ## Manual checks (`npm run dev`, http://localhost:3000)
 - Light and dark mode; desktop (1280–1440 px) and phone (375 px): no sideways scroll
   (`document.documentElement.scrollWidth === innerWidth`).
 - Hero chart lines fit the plate; diagram scrolls inside its box on phones.
 - Links: CV PDF returns 200; GitHub repos and certificate links open publicly; Send email / Open in Gmail.
 - Mobile menu opens and closes; keyboard focus visible.
+- Tap targets: every visible link/button is at least 44 px tall at 375 px (inline links inside sentences are exempt).
+- Form input borders and placeholder at least 4.5:1 / 3:1 in both themes.
+- `/does-not-exist` shows the eye-chart 404.
 - Contact form: only send a test message with Vaibhav's OK (it delivers a real email). Check the sent and error states.
 
 ## Rules

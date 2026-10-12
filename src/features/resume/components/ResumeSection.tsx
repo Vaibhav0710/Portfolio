@@ -54,6 +54,8 @@ export const SkillsSection = () => {
       id="skills"
       title="Skills"
       intro="Java and Spring Boot come from PG-DAC and my own projects. At work I write Python, Node.js and C#/.NET."
+      layout="stacked"
+      band
     >
       <p className="mb-8 flex flex-wrap gap-x-6 gap-y-2 font-sans text-sm text-muted">
         <span className="flex items-center gap-2">
@@ -64,7 +66,7 @@ export const SkillsSection = () => {
         </span>
       </p>
 
-      <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {SKILL_GROUPS.map((group) => (
           <div key={group.category}>
             <h3 className="border-b border-rule pb-2 font-sans text-base font-semibold">{group.category}</h3>
@@ -118,13 +120,13 @@ export const EducationSection = () => {
       <h3 className="mt-12 border-b border-rule pb-2 font-sans text-base font-semibold">Certifications and achievements</h3>
       <ul className="mt-2 divide-y divide-rule">
         {CERTIFICATIONS.map((cert) => (
-          <li key={cert.name} className="flex flex-col gap-1 py-3 sm:flex-row sm:items-baseline sm:justify-between">
+          <li key={cert.name} className="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
             <span>
               {cert.name}, <span className="text-muted">{cert.issuer}</span>
               {cert.detail && <span className="block font-sans text-sm text-muted">{cert.detail}</span>}
             </span>
             {cert.link && (
-              <a href={cert.link} target="_blank" rel="noreferrer" className="link font-sans text-sm">
+              <a href={cert.link} target="_blank" rel="noreferrer" className="link inline-flex min-h-11 shrink-0 items-center font-sans text-sm">
                 View certificate
               </a>
             )}
