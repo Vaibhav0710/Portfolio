@@ -16,7 +16,7 @@ wrong project descriptions and wrong education, which could fail a recruiter's o
 accessible, mobile-friendly page; one-click contact and CV.
 
 **Scope:** one page: hero, about, work, projects, skills, education/certifications, connect. Out of scope for now:
-analytics, tracked links, SEO automation.
+tracked links, SEO automation.
 
 **Methodology:** read the brief and master profile → map every old claim → rewrite content into one data file
 with source ids → redesign → verify (lint, types, build, truth grep, screenshots at 375/1280/1440 px, light/dark).
@@ -33,14 +33,22 @@ drawn from the voting-system README; cached photo proxy; removed GSAP, Lenis and
 **Challenges:** fitting the chart lines at every width; keeping the email on one line; the browser preview pane's
 screenshots going stale (solved with headless Chrome captures).
 
-**Future scope:** Playwright smoke tests; per-application tracked links; analytics; SEO; move the photo into the repo.
+**Future scope:** Playwright smoke tests; per-application tracked links; SEO; move the photo into the repo.
 
 **References:** `career/briefs/PORTFOLIO_BRIEF.md`, `career/master_profile.yaml`, C-DAC PG-DAC page
 (https://cdac.in/?id=DAC).
 
 ## Part 2: log (newest first)
 
+### 2026-10-14
+- Added Vercel Web Analytics (`@vercel/analytics`, `<Analytics />` in the root layout) to see visits and
+  referrers (LinkedIn, Naukri, GitHub). Chosen because it sets no cookies, so no consent banner is needed. Custom
+  events need Vercel Pro, so CV clicks are not tracked.
+- Verified: lint, types, build. Analytics data appears only after the deploy.
+
 ### 2026-10-12
+- Contact form: Web3Forms key replaced with one registered to the job email, set in Vercel and `.env`, site
+  redeployed; Vaibhav sent a test message and it arrived in the job inbox.
 - Design audit (accessibility, performance, theming, responsive, motion, composition): 16/20 technical, 6/10 craft.
   Fixed every finding:
   - Input borders 1.9:1 to 5.5:1 and placeholder 3.0:1 to 5.5:1 (WCAG 1.4.11 / readability).

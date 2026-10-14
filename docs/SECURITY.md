@@ -1,8 +1,8 @@
 # Security
 
 ## Secrets
-- `.env` (git-ignored) holds `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` (and a legacy `WEB3FORMS_ACCESS_KEY`, unused since
-  the `/api/contact` route was removed). Vercel stores its own copy in project environment variables.
+- `.env` (git-ignored) holds `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`. Vercel stores its own copy in project environment
+  variables. Since 2026-10-12 the key belongs to vaibhav.jain.careers@gmail.com, so form messages arrive there.
 - The Web3Forms key is shipped to the browser by design; it only allows sending form messages to its inbox.
 - Never print, log or commit `.env` values.
 
@@ -21,6 +21,7 @@ None: the site is public and read-only. No accounts, no admin pages.
 | Vercel | Hosts the site; sees visitor requests |
 | Google Drive (`lh3.googleusercontent.com`) | Photo fetch from the server, at most once a day |
 | Web3Forms | Name, email and message a visitor submits |
+| Vercel Web Analytics | Anonymous page views: page, referrer, country, device. No cookies, no personal data |
 | Google Fonts (via `next/font`, self-hosted at build) | Nothing at runtime |
 
 ## Threats and mitigations

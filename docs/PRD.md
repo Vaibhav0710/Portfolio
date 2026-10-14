@@ -12,7 +12,7 @@ the core requirement.
 - Make contact and the CV one click away.
 
 ## Non-goals
-- Blog, CMS, analytics dashboard, multiple pages (planned later, see roadmap).
+- Blog, CMS, a custom analytics dashboard, multiple pages (planned later, see roadmap).
 - Showing salary or other form-only data.
 
 ## Use cases
@@ -39,11 +39,12 @@ the core requirement.
 ## Success measures
 - Zero claims outside the master profile (grep check in `docs/TESTING.md`).
 - Lint, type check and build pass; page fits at 375 px.
-- Recruiters reply via the form or email (tracked later with analytics).
+- Visits and referrers in Vercel Web Analytics (since 2026-10-14); recruiters reply via the form or email.
 
 ## Roadmap
 - Now: truthful rewrite + redesign (branch `truthful-update`).
-- Next: per-application tracked links (`?r=code`), SEO, analytics (Job/PLAN.md section 9).
+- Done 2026-10-14: Vercel Web Analytics (page views, referrers).
+- Next: per-application tracked links (`?r=code`), SEO (Job/PLAN.md section 9).
 
 ## Open questions
-- Which inbox the Web3Forms key delivers to.
+None right now.
