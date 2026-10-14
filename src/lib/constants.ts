@@ -93,7 +93,8 @@ export const PERSON = {
   githubLabel: "github.com/Vaibhav0710",
   sourceCode: "https://github.com/Vaibhav0710/Portfolio",
   photo: "/api/profile-photo",
-  cv: "/Vaibhav_Jain_Java_Backend_Developer_CV.pdf",
+  // CV lives in Google Drive (career/cv PDF, replaced with "Upload new version" so this link never changes)
+  cv: "https://drive.google.com/uc?export=download&id=1Xc38Mk7qPtW-W6wwbd1RVbXLqIZ8Odv4",
   siteUrl: "https://vaibhavjain-portfolio.vercel.app",
   // [qa_bank: notice_period, relocation]
   noticePeriod: "30 days",

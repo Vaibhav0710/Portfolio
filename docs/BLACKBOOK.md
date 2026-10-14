@@ -45,6 +45,11 @@ screenshots going stale (solved with headless Chrome captures).
   referrers (LinkedIn, Naukri, GitHub). Chosen because it sets no cookies, so no consent banner is needed. Custom
   events need Vercel Pro, so CV clicks are not tracked.
 - Verified: lint, types, build. Analytics data appears only after the deploy.
+- CV moved to Google Drive: "Download CV" points at a direct-download Drive link; the PDF left `public/`; the old
+  path redirects. Updating the CV is now "Upload new version" in Drive (same link, no deploy). Shipped the 12 Oct CV
+  (repo link per project); the Drive copy was checked byte for byte against `career/cv`.
+- Incident caught: the Drive folder was shared as "Anyone with the link: Editor", which would let any visitor replace
+  the CV. Vaibhav switched the folder and file to Viewer before the link went live.
 
 ### 2026-10-12
 - Contact form: Web3Forms key replaced with one registered to the job email, set in Vercel and `.env`, site

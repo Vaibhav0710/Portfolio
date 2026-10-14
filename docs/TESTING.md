@@ -23,7 +23,7 @@ Then read every changed line in `src/lib/constants.ts` against `career/master_pr
 - Light and dark mode; desktop (1280–1440 px) and phone (375 px): no sideways scroll
   (`document.documentElement.scrollWidth === innerWidth`).
 - Hero chart lines fit the plate; diagram scrolls inside its box on phones.
-- Links: CV PDF returns 200; GitHub repos and certificate links open publicly; Send email / Open in Gmail.
+- Links: CV link downloads the PDF signed out (and matches `career/cv`), the old `/Vaibhav_Jain_Java_Backend_Developer_CV.pdf` path redirects to it; GitHub repos and certificate links open publicly; Send email / Open in Gmail.
 - Mobile menu opens and closes; keyboard focus visible.
 - Tap targets: every visible link/button is at least 44 px tall at 375 px (inline links inside sentences are exempt).
 - Form input borders and placeholder at least 4.5:1 / 3:1 in both themes.

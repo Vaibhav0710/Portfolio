@@ -6,9 +6,10 @@
 Browser ──► Vercel (Next.js 16, static "/" page)
               ├─ /                       pre-rendered HTML from src/app/page.tsx
               ├─ /api/profile-photo      serverless proxy → Google Drive image (cached 1 day)
-              └─ /Vaibhav_Jain_...CV.pdf  static file from public/
+              └─ /Vaibhav_Jain_...CV.pdf  redirect → the CV in Google Drive (old links keep working)
 Browser ──► api.web3forms.com            contact form submit (client-side, public access key)
 Browser ──► Vercel Web Analytics          page-view beacon (no cookies)
+Browser ──► drive.google.com           "Download CV" (public file, direct download)
 ```
 
 ## Components
@@ -39,6 +40,8 @@ Next.js 16.2.6 (Turbopack), React 19.2.4, TypeScript 5, Tailwind CSS 4, ESLint 9
 - **Form posts straight to Web3Forms** (its key is public by design); the old `/api/contact` relay was removed.
 - **Photo stays on Google Drive behind a cached proxy** instead of being committed (keeps the repo free of personal
   images; can move to `public/` later).
+- **CV in Google Drive** (2026-10-14): the PDF is replaced with Drive's "Upload new version", which keeps the
+  link, so a new CV needs no code change or deploy. `next.config.ts` redirects the old `public/` path to it.
 - **Vercel Web Analytics** (added 2026-10-14): cookie-free, so no consent banner; free plan covers page views,
   referrers, countries and devices. Custom events (e.g. CV clicks) need Vercel Pro, so none are sent.
 - Rejected: CMS or MDX (overkill for one page); `next/image` for the photo (proxy already sets caching).

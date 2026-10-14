@@ -20,6 +20,7 @@ None: the site is public and read-only. No accounts, no admin pages.
 |---|---|
 | Vercel | Hosts the site; sees visitor requests |
 | Google Drive (`lh3.googleusercontent.com`) | Photo fetch from the server, at most once a day |
+| Google Drive (`drive.google.com`) | CV downloads: Google sees the visitor's request |
 | Web3Forms | Name, email and message a visitor submits |
 | Vercel Web Analytics | Anonymous page views: page, referrer, country, device. No cookies, no personal data |
 | Google Fonts (via `next/font`, self-hosted at build) | Nothing at runtime |
@@ -28,6 +29,10 @@ None: the site is public and read-only. No accounts, no admin pages.
 - Form spam: hidden `botcheck` honeypot; Web3Forms' own filtering.
 - Open relay: removed (`/api/contact` forwarded arbitrary JSON).
 - XSS: no `dangerouslySetInnerHTML`; all content is static strings rendered by React.
+
+## CV file in Drive
+The CV file and its folder must be shared as "Anyone with the link: **Viewer**", never Editor, or any visitor
+could replace or delete it. Check with the Drive permissions before linking a new file.
 
 ## Hard rules
 - Never push or deploy without Vaibhav's OK.

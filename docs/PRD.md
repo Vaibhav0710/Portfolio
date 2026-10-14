@@ -28,7 +28,7 @@ the core requirement.
 5. Skills: backend only, each marked "used at work" or "projects and training".
 6. Education (PG-DAC with modules; B.E. Mechanical, MESCOE/SPPU, 2019–2023) and certifications/achievements.
 7. Connect: message form, Send email / Open in Gmail, LinkedIn, GitHub, CV, notice period, open-to locations.
-8. CV PDF served from the site.
+8. CV PDF downloadable in one click (hosted in Google Drive, so it updates without a deploy).
 
 ## Non-functional requirements
 - Truth: no number or claim that isn't in the master profile.
