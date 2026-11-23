@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ProfileSection } from "@/features/profile";
-import { AboutSection } from "@/features/about";
+import { AboutSection, NumbersBand, WhyHire } from "@/features/about";
 import { WorkSection, SkillsSection, EducationSection } from "@/features/resume";
 import { ProjectsGrid } from "@/features/projects";
 import { ContactSection } from "@/features/contact";
@@ -19,6 +19,8 @@ export default function Home() {
       <main id="main">
         <ProfileSection />
         <AboutSection />
+        <NumbersBand />
+        <WhyHire />
         <WorkSection />
         <ProjectsGrid />
         <SkillsSection />

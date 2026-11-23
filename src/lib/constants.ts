@@ -171,8 +171,15 @@ export const HERO = {
   pitch:
     "1.5 years shipping production APIs in healthtech (Python, Node.js, C#/.NET on Google Cloud), and Java with Spring Boot in a 6-service system I load-tested, chaos-tested and covered with 254 tests.",
   locations: ["Pune, India", "Remote, any city in India", "Relocating: UAE, Europe, Japan, Canada, USA"],
-  // UI instruction for the chart, not a claim
+  // UI labels for the chart and the buttons, not claims
   chartHint: "Scroll to bring the chart into focus, or move the lens over it.",
+  chartLabel: "Focus chart",
+  actions: {
+    email: "Email me",
+    cv: "Download CV",
+    linkedin: "LinkedIn profile",
+    github: "GitHub profile",
+  },
 };
 
 // Lines of the focus chart, largest first [sum_5, sum_1]
@@ -192,6 +199,9 @@ export const CLOSING_LINE = "If you can read this, we should talk.";
 // About [pack A2, sum_1, edu_1, edu_2]
 // The statement is split so each part fills in turn on scroll.
 // ==========================================
+// UI label, not a claim
+export const ABOUT_LABEL = "About";
+
 export const ABOUT_STATEMENT: string[] = [
   "I'm a backend developer who builds ",
   "reliable APIs, background jobs ",
@@ -203,6 +213,9 @@ export const ABOUT_STATEMENT: string[] = [
 
 export const ABOUT_STORY =
   "I studied mechanical engineering, then moved to software through CDAC's PG-DAC programme, where Java became my core language. Since April 2025 I've shipped production backend services at IntelligentDX, a healthtech company building software for eye-care practices: an internship that turned into a full-time role.";
+
+// UI label, not a claim
+export const NUMBERS_LABEL = "In numbers";
 
 // [sum_1, sum_2, sum_6, exp_1.b38]
 export const STATS: Stat[] = [
@@ -216,6 +229,13 @@ export const STATS: Stat[] = [
   { value: 180, decimals: 0, suffix: "+", label: "pull requests reviewed" },
   { value: 59, decimals: 0, suffix: "", label: "design, API-contract and runbook documents written" },
 ];
+
+// UI labels for the "What you get" section, not claims
+export const WHY_SECTION = {
+  label: "Why hire me",
+  eyebrow: "For hiring managers",
+  heading: "What you get if you hire me",
+};
 
 // "What you get if you hire me" [sum_1, exp_1.b34, proj_1.b10, proj_1.b9, proj_1.b6, exp_1.b23, proj_1.b5, exp_1.b38]
 export const WHY: Pitch[] = [

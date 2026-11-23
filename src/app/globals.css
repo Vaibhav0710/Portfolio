@@ -18,6 +18,9 @@
   --accent: #b3262d;
   --tint: #e2e8ec;
   --band: #14223a;
+  /* Text on the navy numbers band; the band stays dark in both themes, so these do not change in dark mode */
+  --on-band: #eef1f2;
+  --on-band-muted: #c4cbd6;
   --glass: rgb(238 241 242 / 0.8);
   --ok: #1f7a4d;
   --stop: #b3262d;
@@ -62,6 +65,8 @@
   --color-accent: var(--accent);
   --color-tint: var(--tint);
   --color-band: var(--band);
+  --color-on-band: var(--on-band);
+  --color-on-band-muted: var(--on-band-muted);
   --color-glass: var(--glass);
   --color-link: var(--link);
   --color-ok: var(--ok);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type PointerEvent } from "react";
-import { CHART_LINES, CLOSING_LINE } from "@/lib/constants";
+import { CHART_LINES, CLOSING_LINE, HERO } from "@/lib/constants";
 import { lensFrame, type LensFrame } from "@/lib/lens";
 
 // Lens radius in px (the design's lensSize default)
@@ -80,7 +80,7 @@ export const LensChart = () => {
 
   return (
     <>
-      <ul className="sr-only">
+      <ul aria-label={HERO.chartLabel} className="sr-only">
         {CHART_LINES.map((line) => (
           <li key={line.text}>{line.text}</li>
         ))}

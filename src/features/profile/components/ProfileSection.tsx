@@ -13,7 +13,7 @@ const ICON_BUTTON =
 
 const Intro = () => (
   <>
-    <div className="flex items-center gap-[18px]">
+    <div className="flex flex-wrap items-center gap-[18px]">
       {/* The photo comes from our own /api route and is small, so next/image would add nothing */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -49,18 +49,18 @@ const Locations = () => (
 const Actions = () => (
   <div className="flex flex-wrap items-center gap-3 font-sans">
     <a href={`mailto:${PERSON.email}`} className={`${PILL_BUTTON} bg-ink text-paper hover:text-paper`}>
-      Email me
+      {HERO.actions.email}
     </a>
     <a
       href={PERSON.cv}
       className={`${PILL_BUTTON} border-[1.5px] border-ink text-ink hover:bg-ink hover:text-paper`}
     >
-      Download CV
+      {HERO.actions.cv}
     </a>
-    <a href={PERSON.linkedin} aria-label="LinkedIn profile" className={ICON_BUTTON}>
+    <a href={PERSON.linkedin} aria-label={HERO.actions.linkedin} className={ICON_BUTTON}>
       <LinkedinLogo size={ICON_SIZE} aria-hidden="true" />
     </a>
-    <a href={PERSON.github} aria-label="GitHub profile" className={ICON_BUTTON}>
+    <a href={PERSON.github} aria-label={HERO.actions.github} className={ICON_BUTTON}>
       <GithubLogo size={ICON_SIZE} aria-hidden="true" />
     </a>
   </div>
@@ -77,7 +77,7 @@ export const ProfileSection = () => {
             <Actions />
           </div>
           <div className="flex flex-col gap-3.5">
-            <p aria-hidden="true" className="hint m-0 text-center font-sans text-sm text-muted">
+            <p aria-hidden="true" className="hint m-0 text-center font-sans text-sm text-muted pointer-coarse:hidden">
               {HERO.chartHint}
             </p>
             <LensChart />

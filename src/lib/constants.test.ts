@@ -4,7 +4,7 @@ import { describe, expect, test } from "vitest";
 import { parse } from "yaml";
 import { blockedIn, blockedPhrases, publicFacts, unknownNumbers } from "@/test-utils/truth";
 import * as content from "./constants";
-import { STATS } from "./constants";
+import { ABOUT_STATEMENT, STATS, WHY } from "./constants";
 
 // Used when the master profile is not on disk (CI, Vercel)
 const FALLBACK_BLOCKED = [
@@ -91,6 +91,14 @@ describe("portfolio content", () => {
     const targets = STATS.map((stat) => stat.value);
 
     expect(targets).toEqual([1.5, 400, 180, 59]);
+  });
+
+  test("the about statement has the six parts the fill classes s1-s6 expect", () => {
+    expect(ABOUT_STATEMENT).toHaveLength(6);
+  });
+
+  test("there are four hiring cards for the four entrance delays", () => {
+    expect(WHY).toHaveLength(4);
   });
 });
 

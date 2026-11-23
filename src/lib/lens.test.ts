@@ -28,4 +28,12 @@ describe("lensFrame", () => {
   test("passes the radius through", () => {
     expect(lensFrame(10, 10, PLATE, 110).r).toBe(110);
   });
+
+  test("never gives a negative radius", () => {
+    expect(lensFrame(10, 10, PLATE, -20).r).toBe(0);
+  });
+
+  test("hides the lens on a plate with no size", () => {
+    expect(lensFrame(0, 0, { width: 0, height: 0 }, RADIUS)).toEqual({ x: 0, y: 0, r: 60, visible: false });
+  });
 });
