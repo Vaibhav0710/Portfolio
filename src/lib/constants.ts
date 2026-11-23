@@ -171,6 +171,8 @@ export const HERO = {
   pitch:
     "1.5 years shipping production APIs in healthtech (Python, Node.js, C#/.NET on Google Cloud), and Java with Spring Boot in a 6-service system I load-tested, chaos-tested and covered with 254 tests.",
   locations: ["Pune, India", "Remote, any city in India", "Relocating: UAE, Europe, Japan, Canada, USA"],
+  // UI instruction for the chart, not a claim
+  chartHint: "Scroll to bring the chart into focus, or move the lens over it.",
 };
 
 // Lines of the focus chart, largest first [sum_5, sum_1]
