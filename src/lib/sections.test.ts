@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { pickActiveSection, sectionIdFromHref } from "./sections";
+import { pickActiveSection, sectionIdFromHref, watchedSectionIds } from "./sections";
 
 describe("pickActiveSection", () => {
   test("keeps the current section when no entry is crossing the band", () => {
@@ -28,6 +28,18 @@ describe("pickActiveSection", () => {
 
   test("stays empty until a section crosses the band", () => {
     expect(pickActiveSection([], null)).toBeNull();
+  });
+});
+
+describe("watchedSectionIds", () => {
+  test("also watches the hero and education so no stale link stays highlighted there", () => {
+    expect(watchedSectionIds(["about", "contact"])).toEqual(["top", "about", "contact", "education"]);
+  });
+
+  test("a crossing hero clears the highlight because no link matches it", () => {
+    const active = pickActiveSection([{ id: "top", isIntersecting: true }], "contact");
+
+    expect(["about", "contact"].includes(active ?? "")).toBe(false);
   });
 });
 

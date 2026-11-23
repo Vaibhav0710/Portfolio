@@ -12,4 +12,13 @@ export const pickActiveSection = (entries: SectionCrossing[], current: string | 
   return crossing.length > 0 ? crossing[crossing.length - 1].id : current;
 };
 
-export const sectionIdFromHref = (href: string): string => href.replace(/^#/, "");
+/** Sections with no nav link; watching them clears the highlight while they are on screen. */
+const UNLINKED_SECTION_IDS = { before: "top", after: "education" } as const;
+
+export const watchedSectionIds = (linkedIds: string[]): string[] => [
+  UNLINKED_SECTION_IDS.before,
+  ...linkedIds,
+  UNLINKED_SECTION_IDS.after,
+];
+
+export const sectionIdFromHref =(href: string): string => href.replace(/^#/, "");

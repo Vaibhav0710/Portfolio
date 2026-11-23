@@ -3,11 +3,11 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { NAV_LINKS, PERSON, type NavLink } from "@/lib/constants";
-import { sectionIdFromHref } from "@/lib/sections";
+import { sectionIdFromHref, watchedSectionIds } from "@/lib/sections";
 import { ThemeToggle } from "./ThemeToggle";
 import { useActiveSection } from "./useActiveSection";
 
-const SECTION_IDS = NAV_LINKS.map((link) => sectionIdFromHref(link.href));
+const SECTION_IDS = watchedSectionIds(NAV_LINKS.map((link) => sectionIdFromHref(link.href)));
 const EMAIL_HREF = `mailto:${PERSON.email}`;
 const MENU_ICON_SIZE = 22;
 
@@ -26,7 +26,7 @@ const NavItem = ({ link, isActive }: NavItemProps) => (
     {link.name}
     <span
       aria-hidden="true"
-      className={`absolute inset-x-0 bottom-1.5 h-0.5 origin-left rounded-[2px] bg-accent transition-transform duration-350 ease-(--ease-out) ${isActive ? "scale-x-100" : "scale-x-0"}`}
+      className={`absolute inset-x-0 bottom-1.5 h-0.5 origin-left rounded-[2px] bg-accent transition-transform duration-350 ease-(--ease-out) motion-reduce:transition-none ${isActive ? "scale-x-100" : "scale-x-0"}`}
     />
   </a>
 );
