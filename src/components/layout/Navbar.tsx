@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { List, X } from "@phosphor-icons/react";
 import { NAV_LINKS, PERSON } from "@/lib/constants";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +26,7 @@ export const Navbar = () => {
         </ul>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <a
             href={PERSON.cv}
             className="pressable inline-flex min-h-11 items-center rounded-sm border border-ink px-3.5 text-sm font-medium hover:bg-ink hover:text-paper"
