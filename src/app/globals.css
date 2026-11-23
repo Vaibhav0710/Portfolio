@@ -111,17 +111,18 @@ body {
   a:hover {
     color: var(--link);
   }
+
+  /* In the base layer so a rounded-* utility (the round theme button) keeps its round focus ring */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 }
 
 ::selection {
   background: var(--accent);
   color: var(--plate);
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 2px;
 }
 
 /* Text links: ink text, red underline that thickens on hover */
