@@ -30,7 +30,9 @@ export const WorkSection = () => {
               <p className="font-sans text-sm text-muted">{role.type}</p>
               <ul className="mt-4 max-w-[68ch] list-disc space-y-3 pl-5 marker:text-muted">
                 {role.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
+                  <li key={bullet.title}>
+                    <span className="font-semibold">{bullet.title}.</span> {bullet.text}
+                  </li>
                 ))}
               </ul>
             </li>
@@ -123,7 +125,7 @@ export const EducationSection = () => {
           <li key={cert.name} className="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
             <span>
               {cert.name}, <span className="text-muted">{cert.issuer}</span>
-              {cert.detail && <span className="block font-sans text-sm text-muted">{cert.detail}</span>}
+              {cert.date && <span className="block font-sans text-sm text-muted">{cert.date}</span>}
             </span>
             {cert.link && (
               <a href={cert.link} target="_blank" rel="noreferrer" className="link inline-flex min-h-11 shrink-0 items-center font-sans text-sm">

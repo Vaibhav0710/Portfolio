@@ -1,6 +1,14 @@
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { Section } from "@/components/layout/Section";
-import { LEAD_PROJECT, MINOR_PROJECTS, PROJECTS, type Project, type RepoLink } from "@/lib/constants";
+import {
+  COURIER_PROJECT,
+  JOURNEY,
+  LEAD_PROJECT,
+  MINOR_PROJECTS,
+  VOTING_REPOS,
+  type Project,
+  type RepoLink,
+} from "@/lib/constants";
 import { VotingDiagram } from "./VotingDiagram";
 
 const Bullets = ({ items }: { items: string[] }) => (
@@ -54,31 +62,25 @@ export const ProjectsGrid = () => {
         <VotingDiagram />
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_17rem] lg:gap-14">
-          <Bullets items={lead.bullets} />
+          <Bullets items={JOURNEY.map((step) => `${step.title}: ${step.body}`)} />
           <aside className="space-y-6">
             <BuiltWith stack={lead.stack} />
-            {lead.status && <p className="font-sans text-sm text-muted">{lead.status}</p>}
-            <LinkList links={[{ name: "Overview and architecture", link: lead.link }, ...(lead.repos ?? [])]} />
+            <LinkList links={[{ name: "Overview and architecture", link: lead.link }, ...VOTING_REPOS]} />
           </aside>
         </div>
       </article>
 
-      {/* Other main projects */}
-      {PROJECTS.map((project) => (
-        <article key={project.title} className="mt-14 grid gap-10 border-t border-rule pt-10 lg:grid-cols-[1fr_17rem] lg:gap-14">
-          <div>
-            <ProjectHeader project={project} />
-            <p className="mt-2 max-w-[62ch]">{project.summary}</p>
-            <div className="mt-5">
-              <Bullets items={project.bullets} />
-            </div>
-          </div>
-          <aside className="space-y-6">
-            <BuiltWith stack={project.stack} />
-            <LinkList links={[{ name: "Code on GitHub", link: project.link }]} />
-          </aside>
-        </article>
-      ))}
+      {/* Other main project */}
+      <article className="mt-14 grid gap-10 border-t border-rule pt-10 lg:grid-cols-[1fr_17rem] lg:gap-14">
+        <div>
+          <ProjectHeader project={COURIER_PROJECT} />
+          <p className="mt-2 max-w-[62ch]">{COURIER_PROJECT.summary}</p>
+        </div>
+        <aside className="space-y-6">
+          <BuiltWith stack={COURIER_PROJECT.stack} />
+          <LinkList links={[{ name: "Code on GitHub", link: COURIER_PROJECT.link }]} />
+        </aside>
+      </article>
 
       {/* Smaller projects */}
       <div className="mt-14 border-t border-rule pt-10">
@@ -89,11 +91,9 @@ export const ProjectsGrid = () => {
               <span className="font-sans font-medium">{project.name}</span>
               <span className="text-muted">{project.description}</span>
               <span className="flex gap-5 font-sans text-sm">
-                {project.links.map((link) => (
-                  <a key={link.link} href={link.link} target="_blank" rel="noreferrer" className="link inline-flex min-h-11 items-center">
-                    {link.name}
-                  </a>
-                ))}
+                <a href={project.link} target="_blank" rel="noreferrer" className="link inline-flex min-h-11 items-center">
+                  Code
+                </a>
               </span>
             </li>
           ))}

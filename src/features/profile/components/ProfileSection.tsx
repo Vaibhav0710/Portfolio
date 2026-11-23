@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { CHART_LINES, CHART_LAST_LINE, PERSON } from "@/lib/constants";
+import { CHART_LINES, CLOSING_LINE, PERSON } from "@/lib/constants";
 
 // Type size, width and letter spacing for each chart line, largest first (index matches CHART_LINES)
 // Sizes are in container units (cqi) of the line's own column, so every line fits the plate at any screen width.
@@ -27,14 +27,13 @@ export const ProfileSection = () => {
         <div className="rounded-md bg-plate px-3 py-9 shadow-plate ring-1 ring-rule sm:px-10 sm:py-14">
           <div aria-hidden="true" className="space-y-[0.9em] sm:space-y-6">
             {CHART_LINES.map((line, i) => (
-              <div key={line.acuity} className="grid grid-cols-[1.25rem_1fr_2.5rem] items-center gap-1 sm:grid-cols-[2rem_1fr_3.25rem] sm:gap-3">
+              <div key={line.text} className="grid grid-cols-[1.25rem_1fr_2.5rem] items-center gap-1 sm:grid-cols-[2rem_1fr_3.25rem] sm:gap-3">
                 <span className="font-sans text-[0.65rem] tabular-nums text-muted sm:text-xs">{i + 1}</span>
                 <div className="@container min-w-0">
                   <p className={`chart-line text-center text-balance ${LINE_STYLES[i]}`} style={lineDelay(i)}>
                     {line.text}
                   </p>
                 </div>
-                <span className="text-right font-sans text-[0.65rem] tabular-nums text-muted sm:text-xs">{line.acuity}</span>
               </div>
             ))}
           </div>
@@ -49,12 +48,9 @@ export const ProfileSection = () => {
             <p className="chart-line text-center text-balance text-[0.66rem] tracking-[0.14em] sm:text-[0.72rem]" style={lineDelay(CHART_LINES.length + 1)}>
               {/* The 6/6 line stays small on purpose; padding gives it a full-size tap target */}
               <a href="#contact" className="link inline-flex min-h-11 items-center px-2">
-                {CHART_LAST_LINE.text}
+                {CLOSING_LINE}
               </a>
             </p>
-            <span aria-hidden="true" className="text-right font-sans text-[0.65rem] tabular-nums text-muted sm:text-xs">
-              {CHART_LAST_LINE.acuity}
-            </span>
           </div>
         </div>
 

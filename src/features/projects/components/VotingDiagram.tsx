@@ -64,7 +64,7 @@ export const VotingDiagram = () => {
       </div>
       <p className="mt-2 font-sans text-xs text-muted sm:hidden">Swipe sideways to see the whole diagram.</p>
       <figcaption className="mt-3 font-sans text-sm text-muted">
-        How a vote travels (in red). User, candidate and voting services each have their own PostgreSQL database; the result service is stateless.
+        How a vote travels (in red). User, candidate and voting services each own a schema in one PostgreSQL database; the result service is stateless.
       </figcaption>
     </figure>
   );
