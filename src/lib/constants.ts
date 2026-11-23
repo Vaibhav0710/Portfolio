@@ -86,7 +86,7 @@ export interface Project {
 export interface MinorProject {
   name: string;
   description: string;
-  link: string;
+  links: RepoLink[];
 }
 
 /** where: "work" = used in paid work at IntelligentDX, "projects" = personal projects and training only */
@@ -154,6 +154,7 @@ export const PERSON = {
   openTo: "Any city in India, remote, or relocating to the UAE, Europe, Japan, Canada or the USA",
 };
 
+// UI labels for the section links, not claims
 export const NAV_LINKS: NavLink[] = [
   { name: "About", href: "#about" },
   { name: "Work", href: "#work" },
@@ -182,7 +183,7 @@ export const CHART_LINES: ChartLine[] = [
   { text: "Pune · remote · relocation" },
 ];
 
-// The chart's last line, and the Contact heading
+// The chart's last line, and the Contact heading [pack A2 closing line]
 export const CLOSING_LINE = "If you can read this, we should talk.";
 
 // ==========================================
@@ -332,7 +333,8 @@ export const JOURNEY: Step[] = [
     n: "01",
     title: "API gateway",
     body: "Spring Cloud Gateway routes the request, applies rate limits and validates the JWT. Eureka handles service discovery.",
-    tech: "Spring Cloud Gateway · Eureka · Spring Security (JWT)",
+    // The gateway validates the JWT without Spring Security, which lives in the user service [proj_1.b4]
+    tech: "Spring Cloud Gateway · Eureka · JWT",
   },
   {
     n: "02",
@@ -423,10 +425,12 @@ export const PROOF: Proof[] = [
   {
     figure: "6 / 6",
     title: "Services observed",
-    body: "Prometheus metrics through Micrometer, a Grafana dashboard, Zipkin tracing and JSON logs shipped to Elasticsearch and Kibana.",
+    // Eureka has metrics and logs but no tracing [proj_1.b7]
+    body: "Prometheus metrics from all 6 services through Micrometer, a Grafana dashboard, plus Zipkin tracing and JSON logs shipped to Elasticsearch and Kibana.",
   },
 ];
 
+// One public repo per service [proj_1.evidence_base]
 export const VOTING_REPOS: RepoLink[] = [
   { name: "User service", link: "https://github.com/Vaibhav0710/Voting_User_Service" },
   { name: "Candidate service", link: "https://github.com/Vaibhav0710/Voting_Candidate_Service" },
@@ -454,19 +458,22 @@ export const MINOR_PROJECTS: MinorProject[] = [
     // [proj_5, ach_1]
     name: "DSA practice in Java",
     description: "Leetcode-solution and Daily_DSA repositories. LeetCode 100 Days Badge 2024.",
-    link: "https://github.com/Vaibhav0710/Leetcode-solution",
+    links: [
+      { name: "Leetcode-solution", link: "https://github.com/Vaibhav0710/Leetcode-solution" },
+      { name: "Daily_DSA", link: "https://github.com/Vaibhav0710/Daily_DSA" },
+    ],
   },
   {
     // [proj_4] console app: no React, no Spring Boot, no payments
     name: "Rent_A_Car",
     description: "Console car-rental system with admin and customer menus. Core Java, JDBC, MySQL, Maven.",
-    link: "https://github.com/Vaibhav0710/Rent_A_Car",
+    links: [{ name: "Code", link: "https://github.com/Vaibhav0710/Rent_A_Car" }],
   },
   {
     // [proj_4] console app: no React, no Spring Boot, no Tailwind
     name: "Pizza-Shop",
     description: "Console pizza-ordering system with sign-up, menu, cart and orders. Core Java, JDBC, MySQL.",
-    link: "https://github.com/Vaibhav0710/Pizza-Shop",
+    links: [{ name: "Code", link: "https://github.com/Vaibhav0710/Pizza-Shop" }],
   },
 ];
 
@@ -544,6 +551,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
   },
 ];
 
+// UI labels for the skill filter, not claims
 export const SKILL_FILTERS: SkillFilter[] = [
   { id: "all", label: "All" },
   { id: "work", label: "Used at work" },
@@ -582,12 +590,13 @@ export const EDUCATION: EducationItem[] = [
 
 export const CERTIFICATIONS: Certification[] = [
   {
+    // [cert_1]
     name: "Java Full Stack LIVE Course",
     issuer: "Spark 2.0",
     link: "https://drive.google.com/file/d/1wzmtmsWBLMzwFw_TAUU_146hK4m3yOVL/view?usp=sharing",
   },
   {
-    // Course name as printed on the certificate (career/certificates/certificate-alpha-batch-20-*.pdf)
+    // [cert_2] Course name as printed on the certificate (career/certificates/certificate-alpha-batch-20-*.pdf)
     name: "Alpha: DSA with Java",
     issuer: "Apna College",
     link: "https://drive.google.com/file/d/16F2l1VdV4U1mn0OftWz9VgqM8YpyMFwY/view?usp=sharing",

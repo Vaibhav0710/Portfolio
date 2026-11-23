@@ -91,9 +91,11 @@ export const ProjectsGrid = () => {
               <span className="font-sans font-medium">{project.name}</span>
               <span className="text-muted">{project.description}</span>
               <span className="flex gap-5 font-sans text-sm">
-                <a href={project.link} target="_blank" rel="noreferrer" className="link inline-flex min-h-11 items-center">
-                  Code
-                </a>
+                {project.links.map((link) => (
+                  <a key={link.link} href={link.link} target="_blank" rel="noreferrer" className="link inline-flex min-h-11 items-center">
+                    {link.name}
+                  </a>
+                ))}
               </span>
             </li>
           ))}
