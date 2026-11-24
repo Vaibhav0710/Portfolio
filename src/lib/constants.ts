@@ -111,7 +111,10 @@ export interface EducationItem {
   degree: string;
   institution: string;
   period: string;
+  /** A short description, shown as its own paragraph */
   note?: string;
+  /** Shown on the institution line after the period */
+  grade?: string;
   modules?: string[];
 }
 
@@ -640,6 +643,17 @@ export const SKILL_FILTERS: SkillFilter[] = [
   { id: "projects", label: "Projects and training" },
 ];
 
+// UI labels for the skills section, not claims
+export const SKILLS_SECTION = {
+  label: "Skills",
+  heading: "Backend, Java first",
+  filterLabel: "Filter skills",
+  legend: "Filled dot: used in paid work at IntelligentDX. Ring: personal projects and training.",
+  // Read after each chip, since the dot itself is decorative
+  workNote: "used at work",
+  projectsNote: "projects and training",
+};
+
 // ==========================================
 // Education and certifications [edu_1, edu_2, cert_1..4, ach_1]
 // ==========================================
@@ -666,9 +680,16 @@ export const EDUCATION: EducationItem[] = [
     degree: "B.E., Mechanical Engineering",
     institution: "Modern Education Society's College of Engineering, Pune (Savitribai Phule Pune University)",
     period: "2019 – 2023",
-    note: "CGPA 7.48",
+    grade: "CGPA 7.48",
   },
 ];
+
+// UI labels for the education section, not claims
+export const EDUCATION_SECTION = {
+  heading: "Education",
+  certificationsHeading: "Certifications",
+  certificateLink: "view certificate",
+};
 
 export const CERTIFICATIONS: Certification[] = [
   {
