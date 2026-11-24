@@ -55,6 +55,11 @@ const EXPLAIN: Record<DemoResponse["status"], string> = {
 const randomHex = () =>
   Array.from(crypto.getRandomValues(new Uint8Array(RANDOM_BYTES)), (byte) => byte.toString(16).padStart(2, "0")).join("");
 
+type RequestKind = "new" | "retry";
+
+/** The key for a request, read from the latest state so two clicks in one tick never share a stale key */
+const keyFor = (kind: RequestKind, state: DemoState) => (kind === "new" ? nextKey(state) : state.lastKey);
+
 /** Demo state plus the step timers; every new request clears the old timers, so the newest one wins */
 const useVoteRun = () => {
   const [demo, setDemo] = useState<DemoState>(initialDemo);
@@ -75,14 +80,17 @@ const useVoteRun = () => {
 
   useEffect(() => clearTimers, []);
 
-  const send = (key: string) => {
+  const send = (kind: RequestKind) => {
+    const key = keyFor(kind, current.current);
+    if (key === null) return;
     clearTimers();
     const { next, finals, response } = vote(current.current, key, new Date(), randomHex);
+    // The response is cleared first and set in a later task, so a repeated identical result is announced again
+    commit(() => startRun(next));
     if (prefersReducedMotion()) {
-      commit(() => next);
+      later(0, () => next);
       return;
     }
-    commit(() => startRun(next));
     finals.forEach((final, i) => {
       later(i * STEP_GAP_MS, (state) => withStep(state, i, "run"));
       later((i + RUN_SHARE) * STEP_GAP_MS, (state) => withStep(state, i, final));
@@ -102,12 +110,12 @@ const buttonBase = "press min-h-12 rounded-full px-5 font-sans text-[15px] font-
 
 const Controls = ({ demo, send, reset }: ReturnType<typeof useVoteRun>) => (
   <div className="flex flex-wrap gap-2.5">
-    <button type="button" onClick={() => send(nextKey(demo))} className={`${buttonBase} cursor-pointer border-0 bg-ink text-paper`}>
+    <button type="button" onClick={() => send("new")} className={`${buttonBase} cursor-pointer border-0 bg-ink text-paper`}>
       {VOTE_DEMO.castNew}
     </button>
     <button
       type="button"
-      onClick={() => demo.lastKey && send(demo.lastKey)}
+      onClick={() => send("retry")}
       disabled={demo.lastKey === null}
       className={`${buttonBase} cursor-pointer border-[1.5px] border-ink bg-transparent text-ink`}
     >
@@ -146,7 +154,7 @@ const ResponsePanel = ({ response }: { response: DemoResponse | null }) => (
     <div className="flex items-center gap-3 font-sans">
       <span className="text-sm text-muted">{VOTE_DEMO.responseLabel}</span>
       <span
-        aria-live="polite"
+        data-status
         className={`rounded-full border-[1.5px] border-current px-3.5 py-1.5 text-[15px] font-bold ${response ? STATUS_LOOK[response.status] : "text-muted"}`}
       >
         {response ? statusLine(response) : VOTE_DEMO.waiting}
@@ -156,6 +164,10 @@ const ResponsePanel = ({ response }: { response: DemoResponse | null }) => (
       {response ? responseBody(response) : VOTE_DEMO.waitingBody}
     </pre>
     {response && <p className="m-0 font-sans text-[13.5px] leading-normal text-muted">{EXPLAIN[response.status]}</p>}
+    {/* Spoken once per finished run; empty while a run plays, so the same result twice is read twice */}
+    <p aria-live="polite" className="sr-only m-0">
+      {response ? `${statusLine(response)}. ${EXPLAIN[response.status]}` : ""}
+    </p>
     <p className="m-0 font-sans text-[12.5px] text-muted">{VOTE_DEMO.caption}</p>
   </div>
 );

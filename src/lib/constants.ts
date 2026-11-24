@@ -414,13 +414,13 @@ export const NODES: FlowNode[] = [
   { title: "Result service", note: "Real-time tallies" },
 ];
 
-// The order of checks in the vote demo, as in the voting service [proj_1.b2, proj_1.b5]
+// The order of checks in the vote demo, as in the voting service: the hash is built before the insert [proj_1.b2, proj_1.b5]
 export const VOTE_STEP_LABELS: string[] = [
   "Idempotency key used before by this voter?",
   "Redis: already voted in this election?",
   "Candidate valid? (Resilience4j, cache fallback)",
-  "Insert vote (unique user + election)",
   "SHA-256 hash, chained to the previous vote",
+  "Insert vote (unique user + election)",
   "Publish vote event to Kafka",
 ];
 
@@ -457,7 +457,7 @@ export const VOTE_DEMO = {
   explainReplay:
     "Same idempotency key as before: the original receipt comes back and no second vote is stored. A network retry is always safe.",
   explainConflict:
-    "A new request from a voter who already voted: the Redis check stops it before any database work. If it slipped past, the unique constraint on user and election would still refuse it.",
+    "A new request from a voter who already voted: the Redis check stops it before anything is stored. If it slipped past, the unique constraint on user and election would still refuse it.",
   caption: "Simulated in your browser: ids and hashes are random. The real endpoint lives in the voting service on GitHub.",
   stepStatus: {
     idle: "not run",

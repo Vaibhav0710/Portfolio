@@ -93,6 +93,14 @@ describe("vote demo", () => {
     expect(response.status).toBe(409);
   });
 
+  test("the vote is hashed before it is inserted, as in the voting service", () => {
+    const hash = VOTE_STEP_LABELS.findIndex((label) => label.startsWith("SHA-256"));
+    const insert = VOTE_STEP_LABELS.findIndex((label) => label.startsWith("Insert vote"));
+
+    expect(hash).toBeGreaterThan(-1);
+    expect(hash).toBeLessThan(insert);
+  });
+
   test("every outcome has one final state per step", () => {
     const first = castFirst();
     const outcomes = [first, vote(first.next, "vote-req-1", LATER, counterRand()), vote(first.next, "vote-req-2", LATER, counterRand())];
