@@ -33,7 +33,7 @@ const FilterButtons = ({ filter, onPick }: FilterButtonsProps) => (
 // Dimmed chips stay in the list and are still read out; only their opacity drops.
 // The opacity sits on the list item because `.lift` owns the chip's own `transition`.
 const SkillChip = ({ skill, dimmed }: { skill: Skill; dimmed: boolean }) => (
-  <li className={`flex transition-opacity duration-300 ${dimmed ? "opacity-[0.22]" : "opacity-100"}`}>
+  <li className={`flex transition-opacity duration-300 ${dimmed ? "opacity-[0.55]" : "opacity-100"}`}>
     <span className="lift inline-flex min-h-11 items-center gap-2.5 rounded-full border border-rule bg-plate px-4 font-sans text-[15px]">
       <span
         aria-hidden="true"

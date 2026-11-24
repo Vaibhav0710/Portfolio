@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { WarningCircle } from "@phosphor-icons/react";
 import { CONTACT_FORM, PERSON } from "@/lib/constants";
 
@@ -10,6 +10,28 @@ type Status = "idle" | "sending" | "sent" | "error";
 const CARD = "rise flex flex-col gap-4 rounded-[22px] border border-rule bg-plate p-7 font-sans";
 const FIELD_WRAP = "flex flex-col gap-1.5";
 const LABEL = "text-sm font-semibold";
+
+// Shown after a successful send. Focus moves to its heading so keyboard and screen-reader users
+// are not left on the submit button, which no longer exists.
+const SentStatus = ({ onReset }: { onReset: () => void }) => {
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
+
+  return (
+    <div className={CARD} role="status">
+      <h3 ref={headingRef} tabIndex={-1} className="m-0 text-[22px] font-bold outline-none">
+        {CONTACT_FORM.sentHeading}
+      </h3>
+      <p className="m-0 rounded-[14px] bg-tint p-[18px] text-base leading-[1.6]">{CONTACT_FORM.sentBody}</p>
+      <button type="button" onClick={onReset} className="link inline-flex min-h-11 items-center self-start text-sm">
+        {CONTACT_FORM.sendAnother}
+      </button>
+    </div>
+  );
+};
 
 // Messages go through Web3Forms (https://web3forms.com). Its access key is designed to be public;
 // it decides which inbox receives the messages.
@@ -49,17 +71,7 @@ export const ContactForm = () => {
     }
   };
 
-  if (status === "sent") {
-    return (
-      <div className={CARD} role="status">
-        <h3 className="m-0 text-[22px] font-bold">{CONTACT_FORM.sentHeading}</h3>
-        <p className="m-0 rounded-[14px] bg-tint p-[18px] text-base leading-[1.6]">{CONTACT_FORM.sentBody}</p>
-        <button type="button" onClick={() => setStatus("idle")} className="link inline-flex min-h-11 items-center self-start text-sm">
-          {CONTACT_FORM.sendAnother}
-        </button>
-      </div>
-    );
-  }
+  if (status === "sent") return <SentStatus onReset={() => setStatus("idle")} />;
 
   return (
     <form onSubmit={handleSubmit} aria-labelledby="contact-form-title" className={CARD}>

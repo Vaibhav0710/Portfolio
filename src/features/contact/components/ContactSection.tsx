@@ -18,14 +18,13 @@ const ContactCard = ({ link }: { link: ContactLink }) => (
 export const ContactSection = () => (
   <section
     id="contact"
-    aria-labelledby="contact-title"
+    aria-label={CONTACT_SECTION.label}
     className="overflow-x-clip px-[clamp(20px,4vw,48px)] py-[clamp(100px,12vw,170px)]"
   >
     <div className="mx-auto flex max-w-[1180px] flex-col items-center gap-12">
       <div className="flex flex-col items-center gap-7 text-center">
         <p className="m-0 font-sans text-sm uppercase tracking-[0.14em] text-muted">{CONTACT_SECTION.label}</p>
         <h2
-          id="contact-title"
           className="grow-in m-0 max-w-[16ch] origin-center font-sans text-[clamp(40px,6.6vw,100px)] font-bold leading-[1.02] [font-stretch:118%]"
         >
           {CLOSING_LINE}

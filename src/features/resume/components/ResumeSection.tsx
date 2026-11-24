@@ -13,14 +13,13 @@ const SECTION_PAD = "px-[clamp(20px,4vw,48px)]";
 const SUB_HEADING = "rise m-0 font-sans text-[clamp(32px,4vw,48px)] font-bold [font-stretch:120%]";
 
 export const SkillsSection = () => (
-  <section id="skills" aria-labelledby="skills-title" className={`${SECTION_PAD} py-[clamp(80px,10vw,140px)]`}>
+  <section id="skills" aria-label={SKILLS_SECTION.label} className={`${SECTION_PAD} py-[clamp(80px,10vw,140px)]`}>
     <div className="mx-auto flex max-w-[1180px] flex-col gap-9">
       <SkillFilter
         heading={
           <div className="flex flex-col gap-3">
             <p className="m-0 font-sans text-sm uppercase tracking-[0.14em] text-muted">{SKILLS_SECTION.label}</p>
             <h2
-              id="skills-title"
               className="m-0 font-sans text-[clamp(36px,5vw,60px)] font-bold leading-[1.05] [font-stretch:120%]"
             >
               {SKILLS_SECTION.heading}

@@ -143,29 +143,9 @@ body {
   text-decoration-thickness: 2px;
 }
 
-/* Buttons and button-like links: confirm the press with a slight shrink */
-.pressable {
-  transition-property: transform, color, background-color, border-color, opacity;
-  transition-duration: 160ms;
-  transition-timing-function: var(--ease-out);
-}
-
-.pressable:active {
-  transform: scale(0.97);
-}
-
 /* ---------- Interaction classes from the motion design (.lift, .tilt and .press live in motion.css) ---------- */
 
 @layer components {
-  .sr {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-
   .navlink {
     color: var(--ink);
     text-decoration: none;
@@ -199,48 +179,5 @@ body {
   .field:focus {
     outline: 3px solid var(--link);
     outline-offset: 2px;
-  }
-}
-
-/* ---------- Eye chart (hero) ---------- */
-
-.chart-line {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1.05;
-}
-
-/* The one orchestrated motion: each line comes into focus, top to bottom */
-@keyframes focus-in {
-  from {
-    filter: blur(4px);
-    opacity: 0.3;
-  }
-  to {
-    filter: blur(0);
-    opacity: 1;
-  }
-}
-
-/* Reduced motion keeps a short fade, without the blur */
-@keyframes fade-in {
-  from {
-    opacity: 0.3;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.chart-line {
-  animation: focus-in 560ms var(--ease-out) both;
-  animation-delay: calc(var(--line, 0) * 60ms + 80ms);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chart-line {
-    animation: fade-in 200ms ease both;
-    animation-delay: 0ms;
   }
 }
