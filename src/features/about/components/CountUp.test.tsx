@@ -11,14 +11,20 @@ declare global {
 
 const PROPS = { value: 400, decimals: 0, suffix: "+", spokenSuffix: "+" };
 
-/** An observer that reports the element as off screen as soon as it is watched */
-class OffScreenObserver {
-  constructor(private readonly callback: IntersectionObserverCallback) {}
-  observe(target: Element) {
-    this.callback([{ isIntersecting: false, target } as IntersectionObserverEntry], this as never);
-  }
-  disconnect() {}
-}
+/** An observer that reports the element as off screen at a given top edge as soon as it is watched */
+const offScreenObserverAt = (top: number) =>
+  class {
+    constructor(private readonly callback: IntersectionObserverCallback) {}
+    observe(target: Element) {
+      const entry = { isIntersecting: false, target, boundingClientRect: { top } } as IntersectionObserverEntry;
+      this.callback([entry], this as never);
+    }
+    disconnect() {}
+  };
+
+const BELOW_SCREEN_TOP = 2000;
+const ABOVE_SCREEN_TOP = -2000;
+const OffScreenObserver = offScreenObserverAt(BELOW_SCREEN_TOP);
 
 const stubReducedMotion = (reduce: boolean) =>
   vi.stubGlobal("matchMedia", (query: string) => ({
@@ -85,5 +91,14 @@ describe("CountUp in the browser", () => {
 
     expect(visibleText(container)).toBe("0+");
     expect(spokenText(container)).toBe("400+");
+  });
+
+  test("keeps the final value when the page loads already scrolled past the numbers", () => {
+    vi.stubGlobal("IntersectionObserver", offScreenObserverAt(ABOVE_SCREEN_TOP));
+    stubReducedMotion(false);
+
+    act(() => root.render(<CountUp {...PROPS} />));
+
+    expect(visibleText(container)).toBe("400+");
   });
 });

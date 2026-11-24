@@ -276,7 +276,7 @@ export const WHY: Pitch[] = [
 // Experience: one company, two roles [exp_1]
 // Paid work is Python, Node.js and C#/.NET. Never write or imply Java here.
 // ==========================================
-export const ROLES: Role[] = [
+const ROLES: Role[] = [
   {
     title: "Junior Software Developer",
     type: "Full-time",
@@ -458,7 +458,7 @@ export const VOTE_DEMO = {
   explainCreated:
     "A new vote: every check passed, the vote was hashed into the chain and published to Kafka for the result service.",
   explainReplay:
-    "Same idempotency key as before: the original receipt comes back and no second vote is stored. A network retry is always safe.",
+    "Same idempotency key as before: the original receipt comes back and no second vote is stored.",
   explainConflict:
     "A new request from a voter who already voted: the Redis check stops it before anything is stored. If it slipped past, the unique constraint on user and election would still refuse it.",
   caption: "Simulated in your browser: ids and hashes are random. The real endpoint lives in the voting service on GitHub.",
@@ -658,7 +658,7 @@ export const SKILLS_SECTION = {
 // Education and certifications [edu_1, edu_2, cert_1..4, ach_1]
 // ==========================================
 // [edu_1] Short forms of C-DAC's official PG-DAC module names (cdac.in, checked 2026-10-09)
-export const PG_DAC_MODULES: string[] = [
+const PG_DAC_MODULES: string[] = [
   "OOP with Java",
   "Algorithms and Data Structures in Java",
   "Web-based Java (J2EE)",

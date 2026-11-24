@@ -44,7 +44,8 @@ export const CountUp = ({ value, decimals, suffix, spokenSuffix, className }: Co
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries.some((entry) => entry.isIntersecting)) {
-          setProgress(0);
+          // Only a band still below the screen waits at zero; one already scrolled past keeps its final value
+          if (entries.some((entry) => entry.boundingClientRect.top > 0)) setProgress(0);
           return;
         }
         observer.disconnect();

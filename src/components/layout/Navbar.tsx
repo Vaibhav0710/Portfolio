@@ -90,7 +90,7 @@ export const Navbar = () => {
     <header className="sticky top-0 z-30 border-b border-rule bg-glass backdrop-blur-[14px]">
       <nav
         aria-label="Main"
-        className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-x-6 gap-y-1.5 px-[clamp(20px,4vw,48px)] py-2 font-sans"
+        className="mx-auto flex max-w-[calc(1180px_+_2*clamp(20px,4vw,48px))] flex-wrap items-center justify-between gap-x-6 gap-y-1.5 px-[clamp(20px,4vw,48px)] py-2 font-sans"
       >
         <a
           href="#top"

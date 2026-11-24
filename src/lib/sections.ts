@@ -21,4 +21,4 @@ export const watchedSectionIds = (linkedIds: string[]): string[] => [
   UNLINKED_SECTION_IDS.after,
 ];
 
-export const sectionIdFromHref =(href: string): string => href.replace(/^#/, "");
+export const sectionIdFromHref = (href: string): string => href.replace(/^#/, "");
