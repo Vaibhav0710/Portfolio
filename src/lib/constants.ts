@@ -731,3 +731,23 @@ export const CONTACT_LINKS: ContactLink[] = [
   { label: "LinkedIn", value: PERSON.linkedinLabel, href: PERSON.linkedin },
   { label: "GitHub", value: PERSON.githubLabel, href: PERSON.github },
 ];
+
+// [qa_bank: notice_period, relocation]; the heading is CLOSING_LINE
+export const CONTACT_SECTION = {
+  label: "Connect",
+  notice: "Notice period 30 days. Open to any city in India, remote, or relocating to the UAE, Europe, Japan, Canada or the USA.",
+};
+
+// UI labels for the contact form, not claims
+export const CONTACT_FORM = {
+  heading: "Send a message",
+  name: "Your name",
+  email: "Work email",
+  message: "Role or message",
+  send: "Send message",
+  sending: "Sending…",
+  sentHeading: "Message sent",
+  sentBody: "Thanks for writing. I'll reply to the email address you gave.",
+  sendAnother: "Send another message",
+  error: "The message couldn't be sent. Please try again, or email me at",
+};
