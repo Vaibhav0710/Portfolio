@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ProfileSection } from "@/features/profile";
 import { AboutSection, NumbersBand, WhyHire } from "@/features/about";
 import { WorkSection, SkillsSection, EducationSection } from "@/features/resume";
-import { ProjectsGrid } from "@/features/projects";
+import { OtherProjects, VotingProject } from "@/features/projects";
 import { ContactSection } from "@/features/contact";
 
 export default function Home() {
@@ -22,7 +22,8 @@ export default function Home() {
         <NumbersBand />
         <WhyHire />
         <WorkSection />
-        <ProjectsGrid />
+        <VotingProject />
+        <OtherProjects />
         <SkillsSection />
         <EducationSection />
         <ContactSection />

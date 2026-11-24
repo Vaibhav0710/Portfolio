@@ -424,6 +424,51 @@ export const VOTE_STEP_LABELS: string[] = [
   "Publish vote event to Kafka",
 ];
 
+// UI labels for the voting project sections, not claims; the flow description restates NODES [proj_1.b1, proj_1.b2, proj_1.b3, proj_1.b5]
+export const VOTING_SECTIONS = {
+  galleryLabel: "Lead project",
+  galleryCue: "Follow one vote through it.",
+  flowHeading: "The architecture, one vote at a time",
+  flowIntro: "Keep scrolling: the vote travels from the client to the result service, lighting up each part it passes.",
+  flowDescription:
+    "Client calls the API gateway, which uses Eureka for discovery and routes to the voting service. The voting service checks Redis, validates the candidate, stores the vote in PostgreSQL with a SHA-256 hash chain, and publishes an event to Kafka, which the result service consumes to tally results in real time.",
+  demoEyebrow: "Try it",
+  demoHeading: "Try to vote twice",
+  demoIntro:
+    "Cast a vote, then try again with a new request, or retry the exact same one. The checks run in the same order as the real voting service, with the same status codes and messages.",
+  proofEyebrow: "Voting system",
+  proofHeading: "Tested, broken on purpose, measured",
+  codeButton: "View the code",
+};
+
+// UI labels for the vote demo, not claims; the explanations restate proj_1.b2 and proj_1.b5
+export const VOTE_DEMO = {
+  castNew: "Cast vote (new request)",
+  retrySame: "Retry same request",
+  reset: "Reset",
+  requestLabel: "Request",
+  checksLabel: "Checks",
+  responseLabel: "Response",
+  responseBodyLabel: "Response body",
+  waiting: "waiting",
+  waitingBody: '// Press "Cast vote" to send the request.',
+  explainCreated:
+    "A new vote: every check passed, the vote was hashed into the chain and published to Kafka for the result service.",
+  explainReplay:
+    "Same idempotency key as before: the original receipt comes back and no second vote is stored. A network retry is always safe.",
+  explainConflict:
+    "A new request from a voter who already voted: the Redis check stops it before any database work. If it slipped past, the unique constraint on user and election would still refuse it.",
+  caption: "Simulated in your browser: ids and hashes are random. The real endpoint lives in the voting service on GitHub.",
+  stepStatus: {
+    idle: "not run",
+    run: "checking",
+    pass: "pass",
+    hit: "replay",
+    stop: "stopped",
+    skip: "skipped",
+  },
+};
+
 // [proj_1.b10, proj_1.b9, proj_1.b6, proj_1.b8, proj_1.b7]
 // The load run is 1,000 votes ramped over 60 s, never "1,000 concurrent votes".
 export const PROOF: Proof[] = [
@@ -481,6 +526,13 @@ export const COURIER_PROJECT: Project = {
   summary:
     "A full-stack courier platform with Admin, User and Delivery Partner modules. Spring Boot REST backend with Spring Data JPA and MySQL, secured with Spring Security and JWT, validated with Bean Validation and documented with springdoc OpenAPI. React frontend.",
   link: "https://github.com/Vaibhav0710/Courier-management-system",
+};
+
+// UI labels for the other projects, not claims
+export const OTHER_PROJECTS = {
+  label: "Other projects",
+  courierLink: "Code on GitHub",
+  earlierHeading: "Earlier practice",
 };
 
 export const MINOR_PROJECTS: MinorProject[] = [

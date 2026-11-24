@@ -21,7 +21,7 @@ Browser ──► drive.google.com           "Download CV" (public file, direct 
 | `src/components/layout/Section.tsx` | Shared section shell: title column + content column |
 | `features/profile` | Eye-chart hero (server component, CSS animation) |
 | `features/about`, `features/resume`, `features/projects` | Server components rendering constants |
-| `features/projects/VotingDiagram.tsx` | Inline SVG of the voting system's services |
+| `features/projects` (`VotingProject`, `VoteFlow`, `VoteDemo`, `OtherProjects`) | Voting system gallery, scroll-lit flow diagram, the client-side vote demo (logic in `src/lib/voteDemo.ts`), proof and repo links; Courier and earlier practice |
 | `features/contact` | Connect section; `ContactForm` is the only client form; `Navbar` is the only other client component |
 | `src/app/not-found.tsx` | Eye-chart 404 page |
 | `app/api/profile-photo/route.ts` | Fetches the Drive photo with `revalidate: 86400`, sends public cache headers |

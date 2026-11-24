@@ -1,5 +1,5 @@
 import { WHY, WHY_SECTION } from "@/lib/constants";
-import { TiltCard } from "./TiltCard";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 // The entrance animation and the tilt both set `transform`, so they sit on different elements:
 // the list item rises in on scroll and the card inside it tilts under the pointer.
