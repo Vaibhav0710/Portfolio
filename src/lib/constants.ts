@@ -21,6 +21,8 @@ export interface Stat {
   value: number;
   decimals: number;
   suffix: string;
+  /** The suffix as a screen reader should say it ("1.5 years", not "1.5 yrs") */
+  spokenSuffix: string;
   label: string;
 }
 
@@ -154,6 +156,14 @@ export const PERSON = {
   openTo: "Any city in India, remote, or relocating to the UAE, Europe, Japan, Canada or the USA",
 };
 
+// Button and link labels shared by the navbar and the hero, not claims
+export const ACTION_LABELS = {
+  email: "Email me",
+  cv: "Download CV",
+  linkedin: "LinkedIn profile",
+  github: "GitHub profile",
+};
+
 // UI labels for the section links, not claims
 export const NAV_LINKS: NavLink[] = [
   { name: "About", href: "#about" },
@@ -171,15 +181,9 @@ export const HERO = {
   pitch:
     "1.5 years shipping production APIs in healthtech (Python, Node.js, C#/.NET on Google Cloud), and Java with Spring Boot in a 6-service system I load-tested, chaos-tested and covered with 254 tests.",
   locations: ["Pune, India", "Remote, any city in India", "Relocating: UAE, Europe, Japan, Canada, USA"],
-  // UI labels for the chart and the buttons, not claims
+  // UI labels for the chart, not claims
   chartHint: "Scroll to bring the chart into focus, or move the lens over it.",
   chartLabel: "Focus chart",
-  actions: {
-    email: "Email me",
-    cv: "Download CV",
-    linkedin: "LinkedIn profile",
-    github: "GitHub profile",
-  },
 };
 
 // Lines of the focus chart, largest first [sum_5, sum_1]
@@ -223,11 +227,12 @@ export const STATS: Stat[] = [
     value: 1.5,
     decimals: 1,
     suffix: " yrs",
+    spokenSuffix: " years",
     label: "shipping production backend services on Google Cloud in Python, Node.js and C#/.NET",
   },
-  { value: 400, decimals: 0, suffix: "+", label: "pull requests authored" },
-  { value: 180, decimals: 0, suffix: "+", label: "pull requests reviewed" },
-  { value: 59, decimals: 0, suffix: "", label: "design, API-contract and runbook documents written" },
+  { value: 400, decimals: 0, suffix: "+", spokenSuffix: "+", label: "pull requests authored" },
+  { value: 180, decimals: 0, suffix: "+", spokenSuffix: "+", label: "pull requests reviewed" },
+  { value: 59, decimals: 0, suffix: "", spokenSuffix: "", label: "design, API-contract and runbook documents written" },
 ];
 
 // UI labels for the "What you get" section, not claims

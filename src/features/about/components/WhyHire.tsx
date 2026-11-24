@@ -1,9 +1,8 @@
 import { WHY, WHY_SECTION } from "@/lib/constants";
-import { entranceClass } from "@/lib/motion";
 import { TiltCard } from "./TiltCard";
 
 // The entrance animation and the tilt both set `transform`, so they sit on different elements:
-// the list item pops in on scroll and the card inside it tilts under the pointer.
+// the list item rises in on scroll and the card inside it tilts under the pointer.
 export const WhyHire = () => {
   return (
     <section aria-label={WHY_SECTION.label} className="px-[clamp(20px,4vw,48px)] pt-[clamp(80px,10vw,140px)]">
@@ -15,8 +14,8 @@ export const WhyHire = () => {
           </h2>
         </div>
         <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] gap-4 p-0">
-          {WHY.map((pitch, i) => (
-            <li key={pitch.n} className={`${entranceClass(i)} flex`}>
+          {WHY.map((pitch) => (
+            <li key={pitch.n} className="rise flex">
               <TiltCard className="flex flex-1 flex-col gap-3 rounded-[22px] border border-rule bg-plate p-[30px]">
                 <span
                   aria-hidden="true"

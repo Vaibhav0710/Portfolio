@@ -72,14 +72,6 @@
     .hint { animation: fadeAway linear both; animation-timeline: scroll(root); animation-range: 0px 120px; }
 
     .st { view-timeline: --st block; }
-    .s1, .s2, .s3, .s4, .s5, .s6, .s7 { animation: fillText linear both; animation-timeline: --st; }
-    .s1 { animation-range: contain 0% contain 12%; }
-    .s2 { animation-range: contain 11% contain 24%; }
-    .s3 { animation-range: contain 23% contain 36%; }
-    .s4 { animation-range: contain 40% contain 52%; }
-    .s5 { animation-range: contain 51% contain 62%; }
-    .s6 { animation-range: contain 61% contain 76%; }
-    .s7 { animation-range: contain 78% contain 92%; }
 
     .pop { animation: pop linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
     .d2 { animation-range: entry 8% cover 36%; }
@@ -124,6 +116,16 @@
     .away { animation: away linear both; animation-timeline: scroll(root); animation-range: 600px 900px; }
 
     .st { height: 1900px; }
+    /* The statement fills only while pinned: unpinned, the section is about one screen tall, so its contain
+       range is a few pixels long and the text would sit faded (0.13 opacity) for most of the scroll */
+    .s1, .s2, .s3, .s4, .s5, .s6, .s7 { animation: fillText linear both; animation-timeline: --st; }
+    .s1 { animation-range: contain 0% contain 12%; }
+    .s2 { animation-range: contain 11% contain 24%; }
+    .s3 { animation-range: contain 23% contain 36%; }
+    .s4 { animation-range: contain 40% contain 52%; }
+    .s5 { animation-range: contain 51% contain 62%; }
+    .s6 { animation-range: contain 61% contain 76%; }
+    .s7 { animation-range: contain 78% contain 92%; }
     .stInner { padding-block: 24px; }
     .stCol { gap: clamp(14px, 3vh, 32px); }
     .stBig { font-size: clamp(30px, min(4.6vw, 7vh), 64px); }

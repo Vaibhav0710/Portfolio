@@ -19,7 +19,8 @@ export const NumbersBand = () => {
               value={stat.value}
               decimals={stat.decimals}
               suffix={stat.suffix}
-              className="font-sans text-[clamp(48px,6vw,76px)] font-bold leading-none tabular-nums [font-stretch:120%]"
+              spokenSuffix={stat.spokenSuffix}
+              className="font-sans text-[clamp(44px,5vw,76px)] font-bold leading-none tabular-nums [font-stretch:120%]"
             />
             <span className="text-[17px] leading-[1.55] text-on-band-muted">{stat.label}</span>
           </li>

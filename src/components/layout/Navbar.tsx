@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import { List, X } from "@phosphor-icons/react";
-import { NAV_LINKS, PERSON, type NavLink } from "@/lib/constants";
+import { ACTION_LABELS, NAV_LINKS, PERSON, type NavLink } from "@/lib/constants";
 import { sectionIdFromHref, watchedSectionIds } from "@/lib/sections";
 import { ThemeToggle } from "./ThemeToggle";
 import { useActiveSection } from "./useActiveSection";
@@ -55,7 +55,7 @@ const PhoneMenu = ({ activeId, onNavigate }: PhoneMenuProps) => (
     })}
     <li>
       <a href={EMAIL_HREF} onClick={onNavigate} className="navlink flex min-h-12 items-center text-base font-semibold">
-        Email me
+        {ACTION_LABELS.email}
       </a>
     </li>
   </ul>
@@ -112,7 +112,7 @@ export const Navbar = () => {
             href={EMAIL_HREF}
             className="press hidden min-h-11 items-center rounded-full bg-ink px-[18px] font-semibold text-paper no-underline md:inline-flex"
           >
-            Email me
+            {ACTION_LABELS.email}
           </a>
           <button
             ref={menuButtonRef}

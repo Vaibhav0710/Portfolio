@@ -11,6 +11,7 @@ interface CountUpProps {
   value: number;
   decimals: number;
   suffix: string;
+  spokenSuffix: string;
   className?: string;
 }
 
@@ -32,7 +33,7 @@ const runCount = (setProgress: (t: number) => void): (() => void) => {
  * without script, with reduced motion and for crawlers. Only with IntersectionObserver and motion allowed
  * does it drop to 0 while off screen and count up once it scrolls into view.
  */
-export const CountUp = ({ value, decimals, suffix, className }: CountUpProps) => {
+export const CountUp = ({ value, decimals, suffix, spokenSuffix, className }: CountUpProps) => {
   const ref = useRef<HTMLSpanElement>(null);
   const [progress, setProgress] = useState(1);
 
@@ -58,12 +59,13 @@ export const CountUp = ({ value, decimals, suffix, className }: CountUpProps) =>
     };
   }, []);
 
-  const finalText = countValue(value, 1, decimals) + suffix;
-
   return (
     <span ref={ref} className={className}>
-      <span aria-hidden="true">{countValue(value, progress, decimals) + suffix}</span>
-      <span className="sr-only">{finalText}</span>
+      <span aria-hidden="true">
+        {countValue(value, progress, decimals)}
+        <span className="text-[0.42em] [font-stretch:100%]">{suffix}</span>
+      </span>
+      <span className="sr-only">{countValue(value, 1, decimals) + spokenSuffix}</span>
     </span>
   );
 };

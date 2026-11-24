@@ -1,5 +1,5 @@
 import { GithubLogo, LinkedinLogo } from "@phosphor-icons/react/dist/ssr";
-import { HERO, PERSON } from "@/lib/constants";
+import { ACTION_LABELS, HERO, PERSON } from "@/lib/constants";
 import { LensChart } from "./LensChart";
 
 const PHOTO_SIZE = 104;
@@ -49,18 +49,18 @@ const Locations = () => (
 const Actions = () => (
   <div className="flex flex-wrap items-center gap-3 font-sans">
     <a href={`mailto:${PERSON.email}`} className={`${PILL_BUTTON} bg-ink text-paper hover:text-paper`}>
-      {HERO.actions.email}
+      {ACTION_LABELS.email}
     </a>
     <a
       href={PERSON.cv}
       className={`${PILL_BUTTON} border-[1.5px] border-ink text-ink hover:bg-ink hover:text-paper`}
     >
-      {HERO.actions.cv}
+      {ACTION_LABELS.cv}
     </a>
-    <a href={PERSON.linkedin} aria-label={HERO.actions.linkedin} className={ICON_BUTTON}>
+    <a href={PERSON.linkedin} aria-label={ACTION_LABELS.linkedin} className={ICON_BUTTON}>
       <LinkedinLogo size={ICON_SIZE} aria-hidden="true" />
     </a>
-    <a href={PERSON.github} aria-label={HERO.actions.github} className={ICON_BUTTON}>
+    <a href={PERSON.github} aria-label={ACTION_LABELS.github} className={ICON_BUTTON}>
       <GithubLogo size={ICON_SIZE} aria-hidden="true" />
     </a>
   </div>
