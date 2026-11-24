@@ -154,7 +154,7 @@ body {
   transform: scale(0.97);
 }
 
-/* ---------- Interaction classes from the motion design ---------- */
+/* ---------- Interaction classes from the motion design (.lift, .tilt and .press live in motion.css) ---------- */
 
 @layer components {
   .sr {
@@ -164,37 +164,6 @@ body {
     overflow: hidden;
     clip: rect(0 0 0 0);
     white-space: nowrap;
-  }
-
-  .lift {
-    transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
-  }
-
-  .lift:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 22px 44px -22px rgb(20 34 58 / 0.45);
-  }
-
-  .tilt {
-    transition: transform 0.25s var(--ease-out), box-shadow 0.35s;
-    will-change: transform;
-  }
-
-  .tilt:hover {
-    box-shadow: 0 26px 50px -26px rgb(20 34 58 / 0.5);
-  }
-
-  .press {
-    transition: transform 0.16s var(--ease-out), background-color 0.16s, color 0.16s, opacity 0.16s;
-  }
-
-  .press:active {
-    transform: scale(0.97);
-  }
-
-  .press:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
   }
 
   .navlink {

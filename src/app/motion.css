@@ -40,6 +40,15 @@
 
 .live { animation: live-pulse 2s infinite; }
 
+/* Hover and press feedback. Unlayered like the rest, so a utility on the same element cannot cancel it */
+.lift { transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out); }
+.lift:hover { transform: translateY(-6px); box-shadow: var(--card-shadow); }
+.tilt { transition: transform 0.25s var(--ease-out), box-shadow 0.35s; will-change: transform; }
+.tilt:hover { box-shadow: var(--card-shadow); }
+.press { transition: transform 0.16s var(--ease-out), background-color 0.16s, color 0.16s, opacity 0.16s; }
+.press:active { transform: scale(0.97); }
+.press:disabled { opacity: 0.4; cursor: not-allowed; }
+
 /* Static layout of the pinned sections; the pinned block below compacts these to fit one screen */
 .heroInner { align-items: center; padding-block: 40px; }
 .stInner { align-items: center; padding-block: 64px; }
@@ -144,4 +153,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .live { animation: none; }
+  /* Cards keep their hover shadow but no longer move; TiltCard skips the tilt itself */
+  .lift, .tilt { transition: box-shadow 0.35s; will-change: auto; }
+  .lift:hover { transform: none; }
 }

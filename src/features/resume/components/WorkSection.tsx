@@ -33,12 +33,14 @@ export const WorkSection = () => {
   return (
     <section
       id="work"
-      aria-labelledby="work-title"
+      aria-labelledby="work-label work-title"
       className="px-[clamp(20px,4vw,48px)] py-[clamp(80px,10vw,140px)]"
     >
       <div className="mx-auto flex max-w-[1180px] flex-col gap-12">
         <div className="rise flex flex-col gap-3">
-          <p className="m-0 font-sans text-sm uppercase tracking-[0.14em] text-muted">{WORK_LABEL}</p>
+          <p id="work-label" className="m-0 font-sans text-sm uppercase tracking-[0.14em] text-muted">
+            {WORK_LABEL}
+          </p>
           <h2
             id="work-title"
             className="m-0 font-sans text-[clamp(36px,5vw,60px)] font-bold leading-[1.05] [font-stretch:120%]"

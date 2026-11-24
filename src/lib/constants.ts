@@ -221,6 +221,9 @@ export const ABOUT_STORY =
 // UI label, not a claim
 export const NUMBERS_LABEL = "In numbers";
 
+// UI label, not a claim
+export const WORK_LABEL = "Work";
+
 // [sum_1, sum_2, sum_6, exp_1.b38]
 export const STATS: Stat[] = [
   {
@@ -270,9 +273,6 @@ export const WHY: Pitch[] = [
 // Experience: one company, two roles [exp_1]
 // Paid work is Python, Node.js and C#/.NET. Never write or imply Java here.
 // ==========================================
-// UI label, not a claim
-export const WORK_LABEL = "Work";
-
 export const ROLES: Role[] = [
   {
     title: "Junior Software Developer",
