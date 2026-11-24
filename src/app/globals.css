@@ -1,38 +1,59 @@
 @import "tailwindcss";
+@import "./motion.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 /*
  * Palette: an eye-test chart. Cool chart paper, a white plate, navy ink
  * (the same family as the CV's accent) and one chart-red accent.
+ * Dark mode is the "dark" class on <html>, set before paint by THEME_SCRIPT (src/lib/theme.ts):
+ * a saved choice first, otherwise the system setting.
  */
 :root {
   --paper: #eef1f2;
   --plate: #ffffff;
   --ink: #14223a;
-  --muted: #566173;
+  --muted: rgb(86 97 115);
   --rule: #d3d9df;
   --accent: #b3262d;
   --tint: #e2e8ec;
+  --band: #14223a;
+  /* Text on the navy numbers band; the band stays dark in both themes, so these do not change in dark mode */
+  --on-band: #eef1f2;
+  --on-band-muted: #c4cbd6;
+  --glass: rgb(238 241 242 / 0.8);
+  --ok: #1f7a4d;
+  --stop: #b3262d;
+  --info: #1f5fbf;
+  --code: #0f1a2c;
+  --link: var(--accent);
   /* Shadows are tinted with the ink hue, never pure black */
   --plate-shadow: 0 1px 2px rgb(20 34 58 / 0.06), 0 28px 60px -28px rgb(20 34 58 / 0.28);
   --card-shadow: 0 24px 50px -30px rgb(20 34 58 / 0.35);
   /* Motion: strong ease-out for every UI transition */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  /* Height of the sticky header at >= 1000px; pinned sections stick just below it */
+  --nav-h: 61px;
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #0f141d;
-    --plate: #171e2a;
-    --ink: #e6eaf0;
-    --muted: #9aa5b5;
-    --rule: #2b3445;
-    --accent: #f06b70;
-    --tint: #1d2533;
-    --plate-shadow: 0 1px 2px rgb(4 7 12 / 0.4), 0 28px 60px -28px rgb(4 7 12 / 0.7);
-    --card-shadow: 0 24px 50px -30px rgb(4 7 12 / 0.75);
-    color-scheme: dark;
-  }
+:root.dark {
+  --paper: #0f141d;
+  --plate: #171e2a;
+  --ink: #e6eaf0;
+  --muted: #9aa5b5;
+  --rule: #2b3445;
+  --accent: #f06b70;
+  --tint: #1d2533;
+  --band: #1d2533;
+  --glass: rgb(15 20 29 / 0.78);
+  --ok: #4cc78a;
+  --stop: #f06b70;
+  --info: #7aa7ff;
+  --code: #0b111b;
+  --plate-shadow: 0 1px 2px rgb(4 7 12 / 0.4), 0 28px 60px -28px rgb(4 7 12 / 0.7);
+  --card-shadow: 0 24px 50px -30px rgb(4 7 12 / 0.75);
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -43,6 +64,15 @@
   --color-rule: var(--rule);
   --color-accent: var(--accent);
   --color-tint: var(--tint);
+  --color-band: var(--band);
+  --color-on-band: var(--on-band);
+  --color-on-band-muted: var(--on-band-muted);
+  --color-glass: var(--glass);
+  --color-link: var(--link);
+  --color-ok: var(--ok);
+  --color-stop: var(--stop);
+  --color-info: var(--info);
+  --color-code: var(--code);
 
   --shadow-plate: var(--plate-shadow);
   --shadow-card: var(--card-shadow);
@@ -52,6 +82,7 @@
 
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 html {
@@ -72,17 +103,31 @@ body {
   font-size: 1.0625rem;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+@layer base {
+  a {
+    color: var(--ink);
+    text-decoration-color: var(--link);
+    text-underline-offset: 4px;
+  }
+
+  a:hover {
+    color: var(--link);
+  }
+
+  /* In the base layer so a rounded-* utility (the round theme button) keeps its round focus ring */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 }
 
 ::selection {
   background: var(--accent);
   color: var(--plate);
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 2px;
 }
 
 /* Text links: ink text, red underline that thickens on hover */
@@ -98,56 +143,41 @@ body {
   text-decoration-thickness: 2px;
 }
 
-/* Buttons and button-like links: confirm the press with a slight shrink */
-.pressable {
-  transition-property: transform, color, background-color, border-color, opacity;
-  transition-duration: 160ms;
-  transition-timing-function: var(--ease-out);
-}
+/* ---------- Interaction classes from the motion design (.lift, .tilt and .press live in motion.css) ---------- */
 
-.pressable:active {
-  transform: scale(0.97);
-}
-
-/* ---------- Eye chart (hero) ---------- */
-
-.chart-line {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1.05;
-}
-
-/* The one orchestrated motion: each line comes into focus, top to bottom */
-@keyframes focus-in {
-  from {
-    filter: blur(4px);
-    opacity: 0.3;
+@layer components {
+  .navlink {
+    color: var(--ink);
+    text-decoration: none;
   }
-  to {
-    filter: blur(0);
-    opacity: 1;
-  }
-}
 
-/* Reduced motion keeps a short fade, without the blur */
-@keyframes fade-in {
-  from {
-    opacity: 0.3;
+  .navlink:hover {
+    color: var(--link);
   }
-  to {
-    opacity: 1;
+
+  .rowlink {
+    text-decoration: none;
   }
-}
 
-.chart-line {
-  animation: focus-in 560ms var(--ease-out) both;
-  animation-delay: calc(var(--line, 0) * 60ms + 80ms);
-}
+  .rowlink:hover {
+    background: var(--tint);
+  }
 
-@media (prefers-reduced-motion: reduce) {
-  .chart-line {
-    animation: fade-in 200ms ease both;
-    animation-delay: 0ms;
+  .field {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 48px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1.5px solid var(--muted);
+    background: var(--plate);
+    color: var(--ink);
+    font: inherit;
+    font-size: 16px;
+  }
+
+  .field:focus {
+    outline: 3px solid var(--link);
+    outline-offset: 2px;
   }
 }

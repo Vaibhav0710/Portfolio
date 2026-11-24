@@ -1,29 +1,31 @@
-import { Section } from "@/components/layout/Section";
-import { ABOUT_PARAGRAPHS, PERSON } from "@/lib/constants";
+import { ABOUT_LABEL, ABOUT_STATEMENT, ABOUT_STORY } from "@/lib/constants";
 
+// Fill classes from motion.css, one per statement part; the story paragraph fills last (s7)
+const PART_CLASSES = ["s1", "s2", "s3", "s4", "s5", "s6"];
+// From the fourth part on ("I care about...") the statement is in the accent colour
+const FIRST_ACCENT_PART = 3;
+const TITLE_ID = "about-title";
+
+// Motion classes (st, stInner, stCol, stBig, stPara) own position, height, padding-block, align-items, gap,
+// font-size and the paragraph's line-height, so no utility here sets those properties on them.
 export const AboutSection = () => {
   return (
-    <Section id="about" title="About me">
-      <div className="grid gap-10 lg:grid-cols-[1fr_16rem] lg:gap-14">
-        <div className="max-w-[62ch] space-y-5 text-[1.125rem] leading-[1.75]">
-          {ABOUT_PARAGRAPHS.map((paragraph, i) => (
-            <p key={i}>{paragraph}</p>
-          ))}
+    <section id="about" className="st" aria-labelledby={TITLE_ID}>
+      <div className="stInner box-border flex px-[clamp(20px,4vw,48px)]">
+        <div className="stCol mx-auto flex w-full max-w-[1080px] flex-col">
+          <h2 id={TITLE_ID} className="m-0 font-sans text-sm font-normal uppercase tracking-[0.14em] text-muted">
+            {ABOUT_LABEL}
+          </h2>
+          <p className="stBig m-0 font-sans font-[650] leading-[1.12] tracking-[-0.01em] [font-stretch:108%]">
+            {ABOUT_STATEMENT.map((part, i) => (
+              <span key={part} className={i >= FIRST_ACCENT_PART ? `${PART_CLASSES[i]} text-accent` : PART_CLASSES[i]}>
+                {part}
+              </span>
+            ))}
+          </p>
+          <p className="s7 stPara m-0 max-w-[62ch] text-muted">{ABOUT_STORY}</p>
         </div>
-
-        <figure className="order-first max-w-[16rem] lg:order-none">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={PERSON.photo}
-            alt={`Portrait of ${PERSON.name}`}
-            width={256}
-            height={320}
-            className="aspect-[4/5] w-full rounded-md object-cover ring-1 ring-rule"
-            referrerPolicy="no-referrer"
-          />
-          <figcaption className="mt-3 font-sans text-sm text-muted">{PERSON.name}, {PERSON.location}</figcaption>
-        </figure>
       </div>
-    </Section>
+    </section>
   );
 };

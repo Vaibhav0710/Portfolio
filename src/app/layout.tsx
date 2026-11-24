@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Archivo, Source_Serif_4 } from "next/font/google";
+import { Archivo, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { PERSON } from "@/lib/constants";
+import { THEME_SCRIPT } from "@/lib/theme";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -14,6 +15,12 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
   subsets: ["latin"],
   style: ["normal", "italic"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["400", "600"],
 });
 
 const description =
@@ -38,7 +45,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${sourceSerif.variable}`}>
+    // The head script adds the "dark" class before hydration, so the class differs from the server markup
+    <html
+      lang="en"
+      className={`${archivo.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="min-h-screen">
         {children}
         <Analytics />
