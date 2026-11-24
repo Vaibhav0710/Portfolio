@@ -270,6 +270,9 @@ export const WHY: Pitch[] = [
 // Experience: one company, two roles [exp_1]
 // Paid work is Python, Node.js and C#/.NET. Never write or imply Java here.
 // ==========================================
+// UI label, not a claim
+export const WORK_LABEL = "Work";
+
 export const ROLES: Role[] = [
   {
     title: "Junior Software Developer",

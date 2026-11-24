@@ -1,47 +1,5 @@
 import { Section } from "@/components/layout/Section";
-import { CERTIFICATIONS, EDUCATION, EXPERIENCE, SKILL_GROUPS, type Skill } from "@/lib/constants";
-
-export const WorkSection = () => {
-  const company = EXPERIENCE;
-
-  return (
-    <Section id="work" title="Work" intro="One company so far: I joined as an intern and was taken on full-time.">
-      <article>
-        <header className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-          <h3 className="font-sans text-2xl font-semibold [font-stretch:112%]">{company.name}</h3>
-          <p className="font-sans text-sm tabular-nums text-muted">{company.period}</p>
-        </header>
-        <p className="mt-1 text-muted">
-          {company.description}, {company.location}
-        </p>
-        <p className="mt-4 max-w-[68ch] rounded-sm bg-tint px-4 py-3 font-sans text-sm leading-relaxed">
-          <span className="font-semibold">Stack at work:</span> {company.stack}
-        </p>
-
-        {/* The two roles form a sequence, so a timeline rule links them */}
-        <ol className="mt-8 space-y-10 border-l border-rule">
-          {company.roles.map((role) => (
-            <li key={role.title} className="relative pl-6 sm:pl-8">
-              <span aria-hidden="true" className="absolute -left-[5px] top-2.5 h-[9px] w-[9px] rounded-full border-2 border-accent bg-plate" />
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                <h4 className="font-sans text-lg font-semibold">{role.title}</h4>
-                <p className="font-sans text-sm tabular-nums text-muted">{role.period}</p>
-              </div>
-              <p className="font-sans text-sm text-muted">{role.type}</p>
-              <ul className="mt-4 max-w-[68ch] list-disc space-y-3 pl-5 marker:text-muted">
-                {role.bullets.map((bullet) => (
-                  <li key={bullet.title}>
-                    <span className="font-semibold">{bullet.title}.</span> {bullet.text}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
-      </article>
-    </Section>
-  );
-};
+import { CERTIFICATIONS, EDUCATION, SKILL_GROUPS, type Skill } from "@/lib/constants";
 
 const SkillMark = ({ where }: { where: Skill["where"] }) =>
   where === "work" ? (
