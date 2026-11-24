@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { countValue, prefersReducedMotion } from "@/lib/motion";
 
-// The design's count-up: 1.4 s, starting once 35% of the number is on screen
+// The design's count-up: 1.4 s, starting once VISIBLE_THRESHOLD of the number is on screen
 const DURATION_MS = 1400;
 const VISIBLE_THRESHOLD = 0.35;
 
