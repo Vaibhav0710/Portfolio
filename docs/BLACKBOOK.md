@@ -40,6 +40,10 @@ screenshots going stale (solved with headless Chrome captures).
 
 ## Part 2: log (newest first)
 
+### 2026-11-27
+- Removed the Apna College "Alpha: DSA with Java" certificate (`cert_2`) from the certifications list at Vaibhav's
+  request (also removed from the master profile, the CV and the Naukri texts). DSA practice repos stay under projects.
+
 ### 2026-11-24
 - Motion redesign shipped on the branch (not deployed): the page is now a scroll story. Pinned hero with the focus
   chart and lens, a statement that fills in, count-up numbers, hiring cards, work cards on a drawn timeline, the

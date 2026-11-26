@@ -699,12 +699,6 @@ export const CERTIFICATIONS: Certification[] = [
     link: "https://drive.google.com/file/d/1wzmtmsWBLMzwFw_TAUU_146hK4m3yOVL/view?usp=sharing",
   },
   {
-    // [cert_2] Course name as printed on the certificate (career/certificates/certificate-alpha-batch-20-*.pdf)
-    name: "Alpha: DSA with Java",
-    issuer: "Apna College",
-    link: "https://drive.google.com/file/d/16F2l1VdV4U1mn0OftWz9VgqM8YpyMFwY/view?usp=sharing",
-  },
-  {
     // [cert_4]
     name: "Node JS Certification Course",
     issuer: "Scaler",
