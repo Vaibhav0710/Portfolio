@@ -33,7 +33,7 @@ drawn from the voting-system README; cached photo proxy; removed GSAP, Lenis and
 **Challenges:** fitting the chart lines at every width; keeping the email on one line; the browser preview pane's
 screenshots going stale (solved with headless Chrome captures).
 
-**Future scope:** Playwright smoke tests; per-application tracked links; SEO; move the photo into the repo.
+**Future scope:** Playwright smoke tests for the scroll motion; per-application tracked links; SEO; move the photo into the repo.
 
 **References:** `career/briefs/PORTFOLIO_BRIEF.md`, `career/master_profile.yaml`, C-DAC PG-DAC page
 (https://cdac.in/?id=DAC).
@@ -41,8 +41,46 @@ screenshots going stale (solved with headless Chrome captures).
 ## Part 2: log (newest first)
 
 ### 2026-11-27
-- Removed the Apna College "Alpha: DSA with Java" certificate from the certifications list at Vaibhav's request (it
-  was also removed from the master profile, the CV and the Naukri texts). DSA practice repos stay under projects.
+- Removed the Apna College "Alpha: DSA with Java" certificate (`cert_2`) from the certifications list at Vaibhav's
+  request (also removed from the master profile, the CV and the Naukri texts). DSA practice repos stay under projects.
+
+### 2026-11-24
+- Motion redesign shipped on the branch (not deployed): the page is now a scroll story. Pinned hero with the focus
+  chart and lens, a statement that fills in, count-up numbers, hiring cards, work cards on a drawn timeline, the
+  voting project as sideways cards plus a lit flow diagram and a browser-only "try to vote twice" demo, proof,
+  skills filter, education cards and a new Contact section. Dark mode toggle in the nav. Vitest added (dev only)
+  with truth tests that check every number and blocked phrase against the master profile.
+- Decisions:
+  - **CSS-only motion** (scroll-driven animations in `src/app/motion.css`, unlayered); still no GSAP, Lenis or
+    Motion. Everything sits behind `@supports (animation-timeline: scroll())` and reduced-motion, so Firefox and
+    reduced-motion visitors get the final, readable page.
+  - **Pin limits**: pinning only at `min-width: 1000px` and `min-height: 590px`, sticky at `--nav-h: 61px`, and
+    pinned type sized with `vh` so it fits one screen.
+  - **Phone number shown** in Contact (decided 2026-11-22).
+  - **Dimmed skill chips at 0.55** opacity (was 0.22, too hard to read).
+  - Email label "Your email" (not "Work email"); the notice line is built from `PERSON` instead of repeating it;
+    `PERSON.siteUrl` is now `https://vaibhav-jain.dev` for Open Graph.
+- Truth fixes found while moving the content:
+  - **Wrong database claim fixed**: the voting system uses one PostgreSQL database with a schema per service, never
+    "a database per service".
+  - **Tracing wording**: Prometheus metrics come from all 6 services, but Zipkin tracing is not on all 6 (Eureka has
+    metrics and logs only), so the text no longer implies 6/6 tracing.
+  - **Gateway wording**: the gateway validates the JWT without Spring Security (which lives in the user service),
+    so "Spring Security (JWT)" was dropped from the gateway step.
+- Lessons:
+  - In a cross-origin preview (iframe) the IntersectionObserver ignores `rootMargin` with the default root, so the
+    nav indicator band did not apply; `root: document` makes the margin work there too.
+  - Pinned content must fit under the nav on short screens: hence the 590 px height limit, `top: var(--nav-h)` and
+    `vh`-based type inside pinned boxes. Checked at 1536×695, 1000×600, 1280×650 and 375×812.
+  - Layered motion rules lost to Tailwind utilities (a stray utility could cancel a pin); unlayered rules fixed it.
+  - Two clicks in one tick on the vote demo reused the same request key; the key is now read from the latest state.
+- Final check found the pinned voting cards about 7px past the bottom edge at 1000×600 (the heading wraps more
+  there); screens up to 640px tall now trim the pinned gallery's padding and gap.
+- Verified: `npm test` (89 tests), lint, types, build, truth grep; production build at 1536×695, 1000×600,
+  1280×650 and 375×812 in light and dark (no sideways overflow, nothing under the nav, only the local Vercel
+  analytics 404 in the console); reduced motion (nothing pins, numbers show 1.5 / 400+ / 180+ / 59); Firefox
+  without scroll timelines (no pins, nothing faded or blurred). Not verified: real phones, screen readers,
+  Lighthouse, a real form send.
 
 ### 2026-10-14
 - Added Vercel Web Analytics (`@vercel/analytics`, `<Analytics />` in the root layout) to see visits and

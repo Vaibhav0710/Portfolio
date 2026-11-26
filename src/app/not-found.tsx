@@ -1,44 +1,39 @@
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { PERSON } from "@/lib/constants";
 
-// A small eye chart, in keeping with the home page: the missing page is the line nobody can read.
+// A small focus chart, in keeping with the hero plate: the missing page is the line nobody can read.
+// Sizes are container units of the plate, like the hero chart, so each line fits at any width.
 const LINES = [
-  { text: "404", acuity: "6/60", size: "text-[clamp(3.5rem,18vw,6rem)] [font-stretch:125%] tracking-[0.08em]" },
-  { text: "Page not found", acuity: "6/18", size: "text-[clamp(1rem,4.5vw,1.6rem)] [font-stretch:115%] tracking-[0.09em]" },
+  { text: "404", size: "text-[26cqi]" },
+  { text: "Page not found", size: "text-[7.4cqi]" },
 ];
-
-const lineDelay = (i: number) => ({ "--line": i }) as CSSProperties;
+const LINE_CLASS = "m-0 whitespace-nowrap font-bold uppercase leading-none tracking-[0.06em] [font-stretch:110%]";
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-[100dvh] items-center justify-center px-5 py-16 sm:px-8">
-      <div className="w-full max-w-xl">
-        <div className="rounded-md bg-plate px-4 py-10 shadow-plate ring-1 ring-rule sm:px-10 sm:py-12">
+    <main className="flex min-h-[100dvh] items-center justify-center px-[clamp(20px,4vw,48px)] py-16">
+      <div className="flex w-full max-w-xl flex-col items-center gap-8 font-sans">
+        <div className="@container w-full rounded-[22px] bg-plate shadow-plate">
           <h1 className="sr-only">Page not found</h1>
-          <div aria-hidden="true" className="space-y-5">
-            {LINES.map((line, i) => (
-              <div key={line.acuity} className="grid grid-cols-[1.5rem_1fr_2.5rem] items-center gap-2">
-                <span className="font-sans text-xs tabular-nums text-muted">{i + 1}</span>
-                <p className={`chart-line text-center ${line.size}`} style={lineDelay(i)}>
-                  {line.text}
-                </p>
-                <span className="text-right font-sans text-xs tabular-nums text-muted">{line.acuity}</span>
-              </div>
+          <div aria-hidden="true" className="flex flex-col items-center gap-[5cqi] px-[6cqi] pb-[6cqi] pt-[9cqi]">
+            {LINES.map((line) => (
+              <p key={line.text} className={`${LINE_CLASS} ${line.size}`}>
+                {line.text}
+              </p>
             ))}
+            <div className="mx-[4cqi] h-[2px] self-stretch bg-accent" />
           </div>
-          <div aria-hidden="true" className="mx-auto my-8 h-[2px] w-2/3 bg-accent" />
-          <p className="text-center">This address doesn&apos;t match anything on {PERSON.name}&apos;s site.</p>
+          <p className="m-0 px-[6cqi] pb-[8cqi] text-center font-serif text-[17px] leading-[1.7] text-muted">
+            This address doesn&apos;t match anything on {PERSON.name}&apos;s site.
+          </p>
         </div>
 
-        <div className="mt-8 flex justify-center font-sans">
-          <Link
-            href="/"
-            className="pressable inline-flex min-h-11 items-center rounded-sm bg-ink px-6 text-sm font-medium text-paper hover:opacity-90"
-          >
-            Back to the portfolio
-          </Link>
-        </div>
+        <Link
+          href="/"
+          className="press inline-flex min-h-[50px] items-center rounded-full bg-ink px-[26px] text-base font-semibold text-paper no-underline hover:text-paper"
+        >
+          Back to the portfolio
+        </Link>
       </div>
     </main>
   );

@@ -1,138 +1,98 @@
-import { Section } from "@/components/layout/Section";
-import { CERTIFICATIONS, EDUCATION, EXPERIENCE, SKILL_GROUPS, type Skill } from "@/lib/constants";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import {
+  CERTIFICATIONS,
+  EDUCATION,
+  EDUCATION_SECTION,
+  SKILLS_SECTION,
+  type Certification,
+  type EducationItem,
+} from "@/lib/constants";
+import { SkillFilter } from "./SkillFilter";
 
-export const WorkSection = () => {
-  const company = EXPERIENCE;
+const SECTION_PAD = "px-[clamp(20px,4vw,48px)]";
+const SUB_HEADING = "rise m-0 font-sans text-[clamp(32px,4vw,48px)] font-bold [font-stretch:120%]";
+
+export const SkillsSection = () => (
+  <section id="skills" aria-label={SKILLS_SECTION.label} className={`${SECTION_PAD} py-[clamp(80px,10vw,140px)]`}>
+    <div className="mx-auto flex max-w-[1180px] flex-col gap-9">
+      <SkillFilter
+        heading={
+          <div className="flex flex-col gap-3">
+            <p className="m-0 font-sans text-sm uppercase tracking-[0.14em] text-muted">{SKILLS_SECTION.label}</p>
+            <h2
+              className="m-0 font-sans text-[clamp(36px,5vw,60px)] font-bold leading-[1.05] [font-stretch:120%]"
+            >
+              {SKILLS_SECTION.heading}
+            </h2>
+          </div>
+        }
+      />
+      <p className="m-0 font-sans text-sm text-muted">{SKILLS_SECTION.legend}</p>
+    </div>
+  </section>
+);
+
+const EducationCard = ({ item }: { item: EducationItem }) => (
+  <article className="rise flex flex-col gap-2 rounded-[18px] bg-paper p-6">
+    <h3 className="m-0 font-sans text-[19px] font-bold">{item.degree}</h3>
+    <p className="m-0 text-base text-muted">
+      {[item.institution, item.period, item.grade].filter(Boolean).join(" · ")}
+    </p>
+    {item.note && <p className="m-0 text-base leading-[1.6]">{item.note}</p>}
+    {item.modules && (
+      <ul className="m-0 mt-1 flex list-none flex-wrap gap-1.5 p-0">
+        {item.modules.map((module) => (
+          <li key={module} className="rounded-full bg-tint px-2.5 py-[5px] font-sans text-[13px]">
+            {module}
+          </li>
+        ))}
+      </ul>
+    )}
+  </article>
+);
+
+const CertificationRow = ({ cert }: { cert: Certification }) => {
+  const text = (
+    <span>
+      {cert.name} <span className="text-muted">· {[cert.issuer, cert.date].filter(Boolean).join(", ")}</span>
+    </span>
+  );
+  const row = "flex min-h-[60px] items-center justify-between gap-3 border-b border-rule px-2 py-2";
 
   return (
-    <Section id="work" title="Work" intro="One company so far: I joined as an intern and was taken on full-time.">
-      <article>
-        <header className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-          <h3 className="font-sans text-2xl font-semibold [font-stretch:112%]">{company.name}</h3>
-          <p className="font-sans text-sm tabular-nums text-muted">{company.period}</p>
-        </header>
-        <p className="mt-1 text-muted">
-          {company.description}, {company.location}
-        </p>
-        <p className="mt-4 max-w-[68ch] rounded-sm bg-tint px-4 py-3 font-sans text-sm leading-relaxed">
-          <span className="font-semibold">Stack at work:</span> {company.stack}
-        </p>
-
-        {/* The two roles form a sequence, so a timeline rule links them */}
-        <ol className="mt-8 space-y-10 border-l border-rule">
-          {company.roles.map((role) => (
-            <li key={role.title} className="relative pl-6 sm:pl-8">
-              <span aria-hidden="true" className="absolute -left-[5px] top-2.5 h-[9px] w-[9px] rounded-full border-2 border-accent bg-plate" />
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                <h4 className="font-sans text-lg font-semibold">{role.title}</h4>
-                <p className="font-sans text-sm tabular-nums text-muted">{role.period}</p>
-              </div>
-              <p className="font-sans text-sm text-muted">{role.type}</p>
-              <ul className="mt-4 max-w-[68ch] list-disc space-y-3 pl-5 marker:text-muted">
-                {role.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
-      </article>
-    </Section>
+    <li>
+      {cert.link ? (
+        <a href={cert.link} target="_blank" rel="noreferrer" className={`rowlink text-ink ${row}`}>
+          {text}
+          <span className="sr-only">, {EDUCATION_SECTION.certificateLink}</span>
+          <ArrowUpRight aria-hidden="true" size={16} className="shrink-0" />
+        </a>
+      ) : (
+        <div className={row}>{text}</div>
+      )}
+    </li>
   );
 };
 
-const SkillMark = ({ where }: { where: Skill["where"] }) =>
-  where === "work" ? (
-    <span aria-hidden="true" className="mt-[0.55em] h-2 w-2 shrink-0 rounded-full bg-ink" />
-  ) : (
-    <span aria-hidden="true" className="mt-[0.55em] h-2 w-2 shrink-0 rounded-full border-[1.5px] border-ink" />
-  );
-
-export const SkillsSection = () => {
-  return (
-    <Section
-      id="skills"
-      title="Skills"
-      intro="Java and Spring Boot come from PG-DAC and my own projects. At work I write Python, Node.js and C#/.NET."
-      layout="stacked"
-      band
-    >
-      <p className="mb-8 flex flex-wrap gap-x-6 gap-y-2 font-sans text-sm text-muted">
-        <span className="flex items-center gap-2">
-          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-ink" /> Used in production at work
-        </span>
-        <span className="flex items-center gap-2">
-          <span aria-hidden="true" className="h-2 w-2 rounded-full border-[1.5px] border-ink" /> Projects and training
-        </span>
-      </p>
-
-      <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        {SKILL_GROUPS.map((group) => (
-          <div key={group.category}>
-            <h3 className="border-b border-rule pb-2 font-sans text-base font-semibold">{group.category}</h3>
-            <ul className="mt-3 space-y-1.5 font-sans text-[0.95rem]">
-              {group.items.map((skill) => (
-                <li key={skill.name} className="flex gap-3">
-                  <SkillMark where={skill.where} />
-                  <span>
-                    {skill.name}
-                    <span className="sr-only">{skill.where === "work" ? " (used at work)" : " (projects and training)"}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+export const EducationSection = () => (
+  <section id="education" aria-labelledby="education-title" className={`${SECTION_PAD} bg-plate py-[clamp(80px,10vw,130px)]`}>
+    <div className="mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] gap-10">
+      <div className="flex flex-col gap-5">
+        <h2 id="education-title" className={SUB_HEADING}>
+          {EDUCATION_SECTION.heading}
+        </h2>
+        {EDUCATION.map((item) => (
+          <EducationCard key={item.degree} item={item} />
         ))}
       </div>
-    </Section>
-  );
-};
-
-export const EducationSection = () => {
-  return (
-    <Section id="education" title="Education">
-      <ul className="space-y-10">
-        {EDUCATION.map((item) => (
-          <li key={item.degree}>
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-              <h3 className="font-sans text-lg font-semibold">{item.degree}</h3>
-              <p className="shrink-0 font-sans text-sm tabular-nums text-muted">{item.period}</p>
-            </div>
-            <p className="text-muted">{item.institution}</p>
-            {item.note && <p className="mt-2 max-w-[68ch]">{item.note}</p>}
-            {item.modules && (
-              <>
-                <p className="mt-4 font-sans text-sm font-medium">Modules</p>
-                <ul className="mt-2 grid max-w-[68ch] gap-x-8 gap-y-1.5 font-sans text-[0.95rem] sm:grid-cols-2">
-                  {item.modules.map((module) => (
-                    <li key={module} className="flex gap-2.5">
-                      <span aria-hidden="true" className="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-muted" />
-                      {module}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-
-      <h3 className="mt-12 border-b border-rule pb-2 font-sans text-base font-semibold">Certifications and achievements</h3>
-      <ul className="mt-2 divide-y divide-rule">
-        {CERTIFICATIONS.map((cert) => (
-          <li key={cert.name} className="flex flex-col gap-1 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-            <span>
-              {cert.name}, <span className="text-muted">{cert.issuer}</span>
-              {cert.detail && <span className="block font-sans text-sm text-muted">{cert.detail}</span>}
-            </span>
-            {cert.link && (
-              <a href={cert.link} target="_blank" rel="noreferrer" className="link inline-flex min-h-11 shrink-0 items-center font-sans text-sm">
-                View certificate
-              </a>
-            )}
-          </li>
-        ))}
-      </ul>
-    </Section>
-  );
-};
+      <div className="flex flex-col gap-5">
+        <h2 className={SUB_HEADING}>{EDUCATION_SECTION.certificationsHeading}</h2>
+        <ul className="rise m-0 flex list-none flex-col border-t border-rule p-0">
+          {CERTIFICATIONS.map((cert) => (
+            <CertificationRow key={cert.name} cert={cert} />
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+);
