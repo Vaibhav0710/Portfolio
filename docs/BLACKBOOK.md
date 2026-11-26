@@ -40,6 +40,10 @@ screenshots going stale (solved with headless Chrome captures).
 
 ## Part 2: log (newest first)
 
+### 2026-11-27
+- Removed the Apna College "Alpha: DSA with Java" certificate from the certifications list at Vaibhav's request (it
+  was also removed from the master profile, the CV and the Naukri texts). DSA practice repos stay under projects.
+
 ### 2026-10-14
 - Added Vercel Web Analytics (`@vercel/analytics`, `<Analytics />` in the root layout) to see visits and
   referrers (LinkedIn, Naukri, GitHub). Chosen because it sets no cookies, so no consent banner is needed. Custom
