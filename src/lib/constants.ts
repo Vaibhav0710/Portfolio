@@ -347,12 +347,6 @@ export const CERTIFICATIONS: Certification[] = [
     link: "https://drive.google.com/file/d/1wzmtmsWBLMzwFw_TAUU_146hK4m3yOVL/view?usp=sharing",
   },
   {
-    // Course name as printed on the certificate (career/certificates/certificate-alpha-batch-20-*.pdf)
-    name: "Alpha: DSA with Java",
-    issuer: "Apna College",
-    link: "https://drive.google.com/file/d/16F2l1VdV4U1mn0OftWz9VgqM8YpyMFwY/view?usp=sharing",
-  },
-  {
     name: "Google Cloud Bootcamp",
     issuer: "GeeksforGeeks",
     // The Drive file is private (HTTP 401 on 2026-10-09). Share it as "Anyone with the link", then restore:
